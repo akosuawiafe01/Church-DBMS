@@ -1,0 +1,20 @@
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Mini Church App.exe.config
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Mini Church App.exe
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Mini Church App.pdb
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Mini Church App.xml
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Guna.UI.dll
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Guna.UI2.dll
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.vbprojAssemblyReference.cache
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmAttendance.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmDues.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmLogin.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmMainMenu.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmSchedMeet.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.MemberRegistration.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.Resources.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.vbproj.GenerateResource.cache
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.vbproj.CoreCompileInputs.cache
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.vbproj.CopyComplete
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.exe
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.xml
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.pdb
