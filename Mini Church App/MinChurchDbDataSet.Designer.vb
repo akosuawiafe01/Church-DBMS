@@ -35,7 +35,9 @@ Partial Public Class MinChurchDbDataSet
     
     Private tableSystem_Access As System_AccessDataTable
     
-    Private relationattends As Global.System.Data.DataRelation
+    Private tableDuesInfo As DuesInfoDataTable
+    
+    Private relationis_related_to As Global.System.Data.DataRelation
     
     Private relationmarks As Global.System.Data.DataRelation
     
@@ -84,6 +86,9 @@ Partial Public Class MinChurchDbDataSet
             End If
             If (Not (ds.Tables("System_Access")) Is Nothing) Then
                 MyBase.Tables.Add(New System_AccessDataTable(ds.Tables("System_Access")))
+            End If
+            If (Not (ds.Tables("DuesInfo")) Is Nothing) Then
+                MyBase.Tables.Add(New DuesInfoDataTable(ds.Tables("DuesInfo")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -149,6 +154,16 @@ Partial Public Class MinChurchDbDataSet
     Public ReadOnly Property System_Access() As System_AccessDataTable
         Get
             Return Me.tableSystem_Access
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property DuesInfo() As DuesInfoDataTable
+        Get
+            Return Me.tableDuesInfo
         End Get
     End Property
     
@@ -234,6 +249,9 @@ Partial Public Class MinChurchDbDataSet
             If (Not (ds.Tables("System_Access")) Is Nothing) Then
                 MyBase.Tables.Add(New System_AccessDataTable(ds.Tables("System_Access")))
             End If
+            If (Not (ds.Tables("DuesInfo")) Is Nothing) Then
+                MyBase.Tables.Add(New DuesInfoDataTable(ds.Tables("DuesInfo")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -296,7 +314,13 @@ Partial Public Class MinChurchDbDataSet
                 Me.tableSystem_Access.InitVars
             End If
         End If
-        Me.relationattends = Me.Relations("attends")
+        Me.tableDuesInfo = CType(MyBase.Tables("DuesInfo"),DuesInfoDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableDuesInfo) Is Nothing) Then
+                Me.tableDuesInfo.InitVars
+            End If
+        End If
+        Me.relationis_related_to = Me.Relations("is related to")
         Me.relationmarks = Me.Relations("marks")
         Me.relationpays_ = Me.Relations("pays ")
     End Sub
@@ -319,9 +343,11 @@ Partial Public Class MinChurchDbDataSet
         MyBase.Tables.Add(Me.tableMember)
         Me.tableSystem_Access = New System_AccessDataTable()
         MyBase.Tables.Add(Me.tableSystem_Access)
-        Me.relationattends = New Global.System.Data.DataRelation("attends", New Global.System.Data.DataColumn() {Me.tableMember.memberIDColumn}, New Global.System.Data.DataColumn() {Me.tableAttendance.memberIDColumn}, false)
-        Me.Relations.Add(Me.relationattends)
-        Me.relationmarks = New Global.System.Data.DataRelation("marks", New Global.System.Data.DataColumn() {Me.tableMeeting.eventIDColumn}, New Global.System.Data.DataColumn() {Me.tableAttendance.eventIDColumn}, false)
+        Me.tableDuesInfo = New DuesInfoDataTable()
+        MyBase.Tables.Add(Me.tableDuesInfo)
+        Me.relationis_related_to = New Global.System.Data.DataRelation("is related to", New Global.System.Data.DataColumn() {Me.tableMeeting.eventIDColumn}, New Global.System.Data.DataColumn() {Me.tableAttendance.eventIDColumn}, false)
+        Me.Relations.Add(Me.relationis_related_to)
+        Me.relationmarks = New Global.System.Data.DataRelation("marks", New Global.System.Data.DataColumn() {Me.tableMember.memberIDColumn}, New Global.System.Data.DataColumn() {Me.tableAttendance.memberIDColumn}, false)
         Me.Relations.Add(Me.relationmarks)
         Me.relationpays_ = New Global.System.Data.DataRelation("pays ", New Global.System.Data.DataColumn() {Me.tableMember.memberIDColumn}, New Global.System.Data.DataColumn() {Me.tableDues.memberIDColumn}, false)
         Me.Relations.Add(Me.relationpays_)
@@ -354,6 +380,12 @@ Partial Public Class MinChurchDbDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Function ShouldSerializeSystem_Access() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Private Function ShouldSerializeDuesInfo() As Boolean
         Return false
     End Function
     
@@ -430,6 +462,9 @@ Partial Public Class MinChurchDbDataSet
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Delegate Sub System_AccessRowChangeEventHandler(ByVal sender As Object, ByVal e As System_AccessRowChangeEvent)
     
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Delegate Sub DuesInfoRowChangeEventHandler(ByVal sender As Object, ByVal e As DuesInfoRowChangeEvent)
+    
     '''<summary>
     '''Represents the strongly named DataTable class.
     '''</summary>
@@ -437,8 +472,6 @@ Partial Public Class MinChurchDbDataSet
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
     Partial Public Class AttendanceDataTable
         Inherits Global.System.Data.TypedTableBase(Of AttendanceRow)
-        
-        Private columnmeetingID As Global.System.Data.DataColumn
         
         Private columnmemberID As Global.System.Data.DataColumn
         
@@ -448,7 +481,7 @@ Partial Public Class MinChurchDbDataSet
         
         Private columntemperature As Global.System.Data.DataColumn
         
-        Private columnsignature As Global.System.Data.DataColumn
+        Private columnsignaturee As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -487,14 +520,6 @@ Partial Public Class MinChurchDbDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property meetingIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnmeetingID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property memberIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnmemberID
@@ -527,9 +552,9 @@ Partial Public Class MinChurchDbDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property signatureColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property signatureeColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnsignature
+                Return Me.columnsignaturee
             End Get
         End Property
         
@@ -570,14 +595,14 @@ Partial Public Class MinChurchDbDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddAttendanceRow(ByVal meetingID As String, ByVal parentMemberRowByattends As MemberRow, ByVal parentMeetingRowBymarks As MeetingRow, ByVal arrivalTime As System.TimeSpan, ByVal temperature As String, ByVal signature As String) As AttendanceRow
+        Public Overloads Function AddAttendanceRow(ByVal parentMemberRowBymarks As MemberRow, ByVal parentMeetingRowByis_related_to As MeetingRow, ByVal arrivalTime As String, ByVal temperature As String, ByVal signaturee As String) As AttendanceRow
             Dim rowAttendanceRow As AttendanceRow = CType(Me.NewRow,AttendanceRow)
-            Dim columnValuesArray() As Object = New Object() {meetingID, Nothing, Nothing, arrivalTime, temperature, signature}
-            If (Not (parentMemberRowByattends) Is Nothing) Then
-                columnValuesArray(1) = parentMemberRowByattends(0)
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, arrivalTime, temperature, signaturee}
+            If (Not (parentMemberRowBymarks) Is Nothing) Then
+                columnValuesArray(0) = parentMemberRowBymarks(0)
             End If
-            If (Not (parentMeetingRowBymarks) Is Nothing) Then
-                columnValuesArray(2) = parentMeetingRowBymarks(0)
+            If (Not (parentMeetingRowByis_related_to) Is Nothing) Then
+                columnValuesArray(1) = parentMeetingRowByis_related_to(0)
             End If
             rowAttendanceRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowAttendanceRow)
@@ -586,8 +611,8 @@ Partial Public Class MinChurchDbDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function FindBymeetingID(ByVal meetingID As String) As AttendanceRow
-            Return CType(Me.Rows.Find(New Object() {meetingID}),AttendanceRow)
+        Public Function FindBymemberIDeventID(ByVal memberID As String, ByVal eventID As String) As AttendanceRow
+            Return CType(Me.Rows.Find(New Object() {memberID, eventID}),AttendanceRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -607,40 +632,34 @@ Partial Public Class MinChurchDbDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnmeetingID = MyBase.Columns("meetingID")
             Me.columnmemberID = MyBase.Columns("memberID")
             Me.columneventID = MyBase.Columns("eventID")
             Me.columnarrivalTime = MyBase.Columns("arrivalTime")
             Me.columntemperature = MyBase.Columns("temperature")
-            Me.columnsignature = MyBase.Columns("signature")
+            Me.columnsignaturee = MyBase.Columns("signaturee")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnmeetingID = New Global.System.Data.DataColumn("meetingID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnmeetingID)
             Me.columnmemberID = New Global.System.Data.DataColumn("memberID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnmemberID)
             Me.columneventID = New Global.System.Data.DataColumn("eventID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columneventID)
-            Me.columnarrivalTime = New Global.System.Data.DataColumn("arrivalTime", GetType(Global.System.TimeSpan), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnarrivalTime = New Global.System.Data.DataColumn("arrivalTime", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnarrivalTime)
             Me.columntemperature = New Global.System.Data.DataColumn("temperature", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntemperature)
-            Me.columnsignature = New Global.System.Data.DataColumn("signature", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnsignature)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnmeetingID}, true))
-            Me.columnmeetingID.AllowDBNull = false
-            Me.columnmeetingID.Unique = true
-            Me.columnmeetingID.MaxLength = 10
+            Me.columnsignaturee = New Global.System.Data.DataColumn("signaturee", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsignaturee)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnmemberID, Me.columneventID}, true))
             Me.columnmemberID.AllowDBNull = false
             Me.columnmemberID.MaxLength = 10
+            Me.columneventID.AllowDBNull = false
             Me.columneventID.MaxLength = 5
-            Me.columntemperature.AllowDBNull = false
+            Me.columnarrivalTime.MaxLength = 10
             Me.columntemperature.MaxLength = 5
-            Me.columnsignature.AllowDBNull = false
-            Me.columnsignature.MaxLength = 10
+            Me.columnsignaturee.MaxLength = 5
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1295,10 +1314,10 @@ Partial Public Class MinChurchDbDataSet
             Me.columneventID.AllowDBNull = false
             Me.columneventID.Unique = true
             Me.columneventID.MaxLength = 5
-            Me.columntitle.MaxLength = 500
-            Me.columnliturgist.MaxLength = 100
-            Me.columnresourcePerson.MaxLength = 100
-            Me.columndate.AllowDBNull = false
+            Me.columntitle.AllowDBNull = false
+            Me.columntitle.MaxLength = 200
+            Me.columnliturgist.MaxLength = 500
+            Me.columnresourcePerson.MaxLength = 500
             Me.columndate.MaxLength = 100
         End Sub
         
@@ -2218,6 +2237,283 @@ Partial Public Class MinChurchDbDataSet
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class DuesInfoDataTable
+        Inherits Global.System.Data.TypedTableBase(Of DuesInfoRow)
+        
+        Private columnmemberID As Global.System.Data.DataColumn
+        
+        Private columnNames As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "DuesInfo"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property memberIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmemberID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property NamesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNames
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As DuesInfoRow
+            Get
+                Return CType(Me.Rows(index),DuesInfoRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event DuesInfoRowChanging As DuesInfoRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event DuesInfoRowChanged As DuesInfoRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event DuesInfoRowDeleting As DuesInfoRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event DuesInfoRowDeleted As DuesInfoRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Sub AddDuesInfoRow(ByVal row As DuesInfoRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Function AddDuesInfoRow(ByVal memberID As String, ByVal Names As String) As DuesInfoRow
+            Dim rowDuesInfoRow As DuesInfoRow = CType(Me.NewRow,DuesInfoRow)
+            Dim columnValuesArray() As Object = New Object() {memberID, Names}
+            rowDuesInfoRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowDuesInfoRow)
+            Return rowDuesInfoRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function FindBymemberID(ByVal memberID As String) As DuesInfoRow
+            Return CType(Me.Rows.Find(New Object() {memberID}),DuesInfoRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As DuesInfoDataTable = CType(MyBase.Clone,DuesInfoDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New DuesInfoDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnmemberID = MyBase.Columns("memberID")
+            Me.columnNames = MyBase.Columns("Names")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnmemberID = New Global.System.Data.DataColumn("memberID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmemberID)
+            Me.columnNames = New Global.System.Data.DataColumn("Names", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNames)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnmemberID}, true))
+            Me.columnmemberID.AllowDBNull = false
+            Me.columnmemberID.Unique = true
+            Me.columnmemberID.MaxLength = 10
+            Me.columnNames.ReadOnly = true
+            Me.columnNames.MaxLength = 150
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function NewDuesInfoRow() As DuesInfoRow
+            Return CType(Me.NewRow,DuesInfoRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New DuesInfoRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(DuesInfoRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.DuesInfoRowChangedEvent) Is Nothing) Then
+                RaiseEvent DuesInfoRowChanged(Me, New DuesInfoRowChangeEvent(CType(e.Row,DuesInfoRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.DuesInfoRowChangingEvent) Is Nothing) Then
+                RaiseEvent DuesInfoRowChanging(Me, New DuesInfoRowChangeEvent(CType(e.Row,DuesInfoRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.DuesInfoRowDeletedEvent) Is Nothing) Then
+                RaiseEvent DuesInfoRowDeleted(Me, New DuesInfoRowChangeEvent(CType(e.Row,DuesInfoRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.DuesInfoRowDeletingEvent) Is Nothing) Then
+                RaiseEvent DuesInfoRowDeleting(Me, New DuesInfoRowChangeEvent(CType(e.Row,DuesInfoRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub RemoveDuesInfoRow(ByVal row As DuesInfoRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As MinChurchDbDataSet = New MinChurchDbDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "DuesInfoDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class AttendanceRow
@@ -2234,17 +2530,6 @@ Partial Public Class MinChurchDbDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property meetingID() As String
-            Get
-                Return CType(Me(Me.tableAttendance.meetingIDColumn),String)
-            End Get
-            Set
-                Me(Me.tableAttendance.meetingIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property memberID() As String
             Get
                 Return CType(Me(Me.tableAttendance.memberIDColumn),String)
@@ -2258,11 +2543,7 @@ Partial Public Class MinChurchDbDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property eventID() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableAttendance.eventIDColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'eventID' in table 'Attendance' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tableAttendance.eventIDColumn),String)
             End Get
             Set
                 Me(Me.tableAttendance.eventIDColumn) = value
@@ -2271,10 +2552,10 @@ Partial Public Class MinChurchDbDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property arrivalTime() As System.TimeSpan
+        Public Property arrivalTime() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableAttendance.arrivalTimeColumn),Global.System.TimeSpan)
+                    Return CType(Me(Me.tableAttendance.arrivalTimeColumn),String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'arrivalTime' in table 'Attendance' is DBNull.", e)
                 End Try
@@ -2288,7 +2569,11 @@ Partial Public Class MinChurchDbDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property temperature() As String
             Get
-                Return CType(Me(Me.tableAttendance.temperatureColumn),String)
+                Try 
+                    Return CType(Me(Me.tableAttendance.temperatureColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'temperature' in table 'Attendance' is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableAttendance.temperatureColumn) = value
@@ -2297,23 +2582,16 @@ Partial Public Class MinChurchDbDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property signature() As String
+        Public Property signaturee() As String
             Get
-                Return CType(Me(Me.tableAttendance.signatureColumn),String)
+                Try 
+                    Return CType(Me(Me.tableAttendance.signatureeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'signaturee' in table 'Attendance' is DBNull.", e)
+                End Try
             End Get
             Set
-                Me(Me.tableAttendance.signatureColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property MemberRow() As MemberRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("attends")),MemberRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("attends"))
+                Me(Me.tableAttendance.signatureeColumn) = value
             End Set
         End Property
         
@@ -2321,24 +2599,23 @@ Partial Public Class MinChurchDbDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property MeetingRow() As MeetingRow
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("marks")),MeetingRow)
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("is related to")),MeetingRow)
             End Get
             Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("marks"))
+                Me.SetParentRow(value, Me.Table.ParentRelations("is related to"))
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IseventIDNull() As Boolean
-            Return Me.IsNull(Me.tableAttendance.eventIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SeteventIDNull()
-            Me(Me.tableAttendance.eventIDColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property MemberRow() As MemberRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("marks")),MemberRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("marks"))
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -2350,6 +2627,30 @@ Partial Public Class MinChurchDbDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetarrivalTimeNull()
             Me(Me.tableAttendance.arrivalTimeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IstemperatureNull() As Boolean
+            Return Me.IsNull(Me.tableAttendance.temperatureColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SettemperatureNull()
+            Me(Me.tableAttendance.temperatureColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IssignatureeNull() As Boolean
+            Return Me.IsNull(Me.tableAttendance.signatureeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetsignatureeNull()
+            Me(Me.tableAttendance.signatureeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -2492,11 +2793,7 @@ Partial Public Class MinChurchDbDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property title() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableMeeting.titleColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'title' in table 'Meeting' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tableMeeting.titleColumn),String)
             End Get
             Set
                 Me(Me.tableMeeting.titleColumn) = value
@@ -2537,24 +2834,16 @@ Partial Public Class MinChurchDbDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property _date() As String
             Get
-                Return CType(Me(Me.tableMeeting.dateColumn),String)
+                Try 
+                    Return CType(Me(Me.tableMeeting.dateColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'date' in table 'Meeting' is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableMeeting.dateColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IstitleNull() As Boolean
-            Return Me.IsNull(Me.tableMeeting.titleColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SettitleNull()
-            Me(Me.tableMeeting.titleColumn) = Global.System.Convert.DBNull
-        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -2582,11 +2871,23 @@ Partial Public Class MinChurchDbDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is_dateNull() As Boolean
+            Return Me.IsNull(Me.tableMeeting.dateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set_dateNull()
+            Me(Me.tableMeeting.dateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function GetAttendanceRows() As AttendanceRow()
-            If (Me.Table.ChildRelations("marks") Is Nothing) Then
+            If (Me.Table.ChildRelations("is related to") Is Nothing) Then
                 Return New AttendanceRow(-1) {}
             Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("marks")),AttendanceRow())
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("is related to")),AttendanceRow())
             End If
         End Function
     End Class
@@ -3015,10 +3316,10 @@ Partial Public Class MinChurchDbDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function GetAttendanceRows() As AttendanceRow()
-            If (Me.Table.ChildRelations("attends") Is Nothing) Then
+            If (Me.Table.ChildRelations("marks") Is Nothing) Then
                 Return New AttendanceRow(-1) {}
             Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("attends")),AttendanceRow())
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("marks")),AttendanceRow())
             End If
         End Function
         
@@ -3069,6 +3370,60 @@ Partial Public Class MinChurchDbDataSet
                 Me(Me.tableSystem_Access.passwordColumn) = value
             End Set
         End Property
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class DuesInfoRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableDuesInfo As DuesInfoDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableDuesInfo = CType(Me.Table,DuesInfoDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property memberID() As String
+            Get
+                Return CType(Me(Me.tableDuesInfo.memberIDColumn),String)
+            End Get
+            Set
+                Me(Me.tableDuesInfo.memberIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Names() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDuesInfo.NamesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Names' in table 'DuesInfo' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDuesInfo.NamesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsNamesNull() As Boolean
+            Return Me.IsNull(Me.tableDuesInfo.NamesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetNamesNull()
+            Me(Me.tableDuesInfo.NamesColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -3250,6 +3605,42 @@ Partial Public Class MinChurchDbDataSet
             End Get
         End Property
     End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Class DuesInfoRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As DuesInfoRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New(ByVal row As DuesInfoRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Row() As DuesInfoRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
 End Class
 
 Namespace MinChurchDbDataSetTableAdapters
@@ -3381,68 +3772,66 @@ Namespace MinChurchDbDataSetTableAdapters
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "Attendance"
-            tableMapping.ColumnMappings.Add("meetingID", "meetingID")
             tableMapping.ColumnMappings.Add("memberID", "memberID")
             tableMapping.ColumnMappings.Add("eventID", "eventID")
             tableMapping.ColumnMappings.Add("arrivalTime", "arrivalTime")
             tableMapping.ColumnMappings.Add("temperature", "temperature")
-            tableMapping.ColumnMappings.Add("signature", "signature")
+            tableMapping.ColumnMappings.Add("signaturee", "signaturee")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Attendance] WHERE (([meetingID] = @Original_meetingID) AND ([m"& _ 
-                "emberID] = @Original_memberID) AND ((@IsNull_eventID = 1 AND [eventID] IS NULL) "& _ 
-                "OR ([eventID] = @Original_eventID)) AND ((@IsNull_arrivalTime = 1 AND [arrivalTi"& _ 
-                "me] IS NULL) OR ([arrivalTime] = @Original_arrivalTime)) AND ([temperature] = @O"& _ 
-                "riginal_temperature) AND ([signature] = @Original_signature))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Attendance] WHERE (([memberID] = @Original_memberID) AND ([eve"& _ 
+                "ntID] = @Original_eventID) AND ((@IsNull_arrivalTime = 1 AND [arrivalTime] IS NU"& _ 
+                "LL) OR ([arrivalTime] = @Original_arrivalTime)) AND ((@IsNull_temperature = 1 AN"& _ 
+                "D [temperature] IS NULL) OR ([temperature] = @Original_temperature)) AND ((@IsNu"& _ 
+                "ll_signaturee = 1 AND [signaturee] IS NULL) OR ([signaturee] = @Original_signatu"& _ 
+                "ree)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_meetingID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "meetingID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_memberID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "memberID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_eventID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_eventID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_arrivalTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_arrivalTime", Global.System.Data.SqlDbType.Time, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_arrivalTime", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_temperature", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "temperature", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_temperature", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "temperature", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_signature", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signature", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_signaturee", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signaturee", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_signaturee", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signaturee", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Attendance] ([meetingID], [memberID], [eventID], [arrivalTime]"& _ 
-                ", [temperature], [signature]) VALUES (@meetingID, @memberID, @eventID, @arrivalT"& _ 
-                "ime, @temperature, @signature);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT meetingID, memberID, eventID, arrivalTim"& _ 
-                "e, temperature, signature FROM Attendance WHERE (meetingID = @meetingID)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Attendance] ([memberID], [eventID], [arrivalTime], [temperatur"& _ 
+                "e], [signaturee]) VALUES (@memberID, @eventID, @arrivalTime, @temperature, @sign"& _ 
+                "aturee);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT memberID, eventID, arrivalTime, temperature, signaturee FROM At"& _ 
+                "tendance WHERE (eventID = @eventID) AND (memberID = @memberID)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@meetingID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "meetingID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@memberID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "memberID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@eventID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@arrivalTime", Global.System.Data.SqlDbType.Time, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@arrivalTime", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@temperature", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "temperature", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@signature", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signature", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@signaturee", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signaturee", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Attendance] SET [meetingID] = @meetingID, [memberID] = @memberID, ["& _ 
-                "eventID] = @eventID, [arrivalTime] = @arrivalTime, [temperature] = @temperature,"& _ 
-                " [signature] = @signature WHERE (([meetingID] = @Original_meetingID) AND ([membe"& _ 
-                "rID] = @Original_memberID) AND ((@IsNull_eventID = 1 AND [eventID] IS NULL) OR ("& _ 
-                "[eventID] = @Original_eventID)) AND ((@IsNull_arrivalTime = 1 AND [arrivalTime] "& _ 
-                "IS NULL) OR ([arrivalTime] = @Original_arrivalTime)) AND ([temperature] = @Origi"& _ 
-                "nal_temperature) AND ([signature] = @Original_signature));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT meetingID, me"& _ 
-                "mberID, eventID, arrivalTime, temperature, signature FROM Attendance WHERE (meet"& _ 
-                "ingID = @meetingID)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Attendance] SET [memberID] = @memberID, [eventID] = @eventID, [arri"& _ 
+                "valTime] = @arrivalTime, [temperature] = @temperature, [signaturee] = @signature"& _ 
+                "e WHERE (([memberID] = @Original_memberID) AND ([eventID] = @Original_eventID) A"& _ 
+                "ND ((@IsNull_arrivalTime = 1 AND [arrivalTime] IS NULL) OR ([arrivalTime] = @Ori"& _ 
+                "ginal_arrivalTime)) AND ((@IsNull_temperature = 1 AND [temperature] IS NULL) OR "& _ 
+                "([temperature] = @Original_temperature)) AND ((@IsNull_signaturee = 1 AND [signa"& _ 
+                "turee] IS NULL) OR ([signaturee] = @Original_signaturee)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT memberID, ev"& _ 
+                "entID, arrivalTime, temperature, signaturee FROM Attendance WHERE (eventID = @ev"& _ 
+                "entID) AND (memberID = @memberID)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@meetingID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "meetingID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@memberID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "memberID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@eventID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@arrivalTime", Global.System.Data.SqlDbType.Time, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@arrivalTime", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@temperature", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "temperature", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@signature", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signature", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_meetingID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "meetingID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@signaturee", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signaturee", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_memberID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "memberID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_eventID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_eventID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_arrivalTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_arrivalTime", Global.System.Data.SqlDbType.Time, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_arrivalTime", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "arrivalTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_temperature", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "temperature", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_temperature", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "temperature", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_signature", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signature", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_signaturee", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signaturee", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_signaturee", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "signaturee", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3458,8 +3847,8 @@ Namespace MinChurchDbDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT meetingID, memberID, eventID, arrivalTime, temperature, signature FROM dbo"& _ 
-                ".Attendance"
+            Me._commandCollection(0).CommandText = "SELECT memberID, eventID, arrivalTime, temperature, signaturee FROM dbo.Attendanc"& _ 
+                "e"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -3519,40 +3908,37 @@ Namespace MinChurchDbDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_meetingID As String, ByVal Original_memberID As String, ByVal Original_eventID As String, ByVal Original_arrivalTime As Global.System.Nullable(Of Global.System.TimeSpan), ByVal Original_temperature As String, ByVal Original_signature As String) As Integer
-            If (Original_meetingID Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_meetingID")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_meetingID,String)
-            End If
+        Public Overloads Overridable Function Delete(ByVal Original_memberID As String, ByVal Original_eventID As String, ByVal Original_arrivalTime As String, ByVal Original_temperature As String, ByVal Original_signaturee As String) As Integer
             If (Original_memberID Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_memberID")
             Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_memberID,String)
+                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_memberID,String)
             End If
             If (Original_eventID Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_eventID")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_eventID,String)
+            End If
+            If (Original_arrivalTime Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(2).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(2).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_eventID,String)
-            End If
-            If (Original_arrivalTime.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_arrivalTime.Value,System.TimeSpan)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_arrivalTime,String)
             End If
             If (Original_temperature Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_temperature")
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_temperature,String)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_temperature,String)
             End If
-            If (Original_signature Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_signature")
+            If (Original_signaturee Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_signature,String)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_signaturee,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -3573,36 +3959,31 @@ Namespace MinChurchDbDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal meetingID As String, ByVal memberID As String, ByVal eventID As String, ByVal arrivalTime As Global.System.Nullable(Of Global.System.TimeSpan), ByVal temperature As String, ByVal signature As String) As Integer
-            If (meetingID Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("meetingID")
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(meetingID,String)
-            End If
+        Public Overloads Overridable Function Insert(ByVal memberID As String, ByVal eventID As String, ByVal arrivalTime As String, ByVal temperature As String, ByVal signaturee As String) As Integer
             If (memberID Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("memberID")
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(memberID,String)
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(memberID,String)
             End If
             If (eventID Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("eventID")
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(eventID,String)
+            End If
+            If (arrivalTime Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(eventID,String)
-            End If
-            If (arrivalTime.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(arrivalTime.Value,System.TimeSpan)
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(arrivalTime,String)
             End If
             If (temperature Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("temperature")
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(temperature,String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(temperature,String)
             End If
-            If (signature Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("signature")
+            If (signaturee Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(signature,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(signaturee,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -3623,70 +4004,62 @@ Namespace MinChurchDbDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal meetingID As String, ByVal memberID As String, ByVal eventID As String, ByVal arrivalTime As Global.System.Nullable(Of Global.System.TimeSpan), ByVal temperature As String, ByVal signature As String, ByVal Original_meetingID As String, ByVal Original_memberID As String, ByVal Original_eventID As String, ByVal Original_arrivalTime As Global.System.Nullable(Of Global.System.TimeSpan), ByVal Original_temperature As String, ByVal Original_signature As String) As Integer
-            If (meetingID Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("meetingID")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(meetingID,String)
-            End If
+        Public Overloads Overridable Function Update(ByVal memberID As String, ByVal eventID As String, ByVal arrivalTime As String, ByVal temperature As String, ByVal signaturee As String, ByVal Original_memberID As String, ByVal Original_eventID As String, ByVal Original_arrivalTime As String, ByVal Original_temperature As String, ByVal Original_signaturee As String) As Integer
             If (memberID Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("memberID")
             Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(memberID,String)
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(memberID,String)
             End If
             If (eventID Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("eventID")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(eventID,String)
+            End If
+            If (arrivalTime Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(eventID,String)
-            End If
-            If (arrivalTime.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(arrivalTime.Value,System.TimeSpan)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(arrivalTime,String)
             End If
             If (temperature Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("temperature")
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(temperature,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(temperature,String)
             End If
-            If (signature Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("signature")
+            If (signaturee Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(signature,String)
-            End If
-            If (Original_meetingID Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_meetingID")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_meetingID,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(signaturee,String)
             End If
             If (Original_memberID Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_memberID")
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_memberID,String)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_memberID,String)
             End If
             If (Original_eventID Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("Original_eventID")
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_eventID,String)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_eventID,String)
             End If
-            If (Original_arrivalTime.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_arrivalTime.Value,System.TimeSpan)
+            If (Original_arrivalTime Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_arrivalTime,String)
             End If
             If (Original_temperature Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_temperature")
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_temperature,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_temperature,String)
             End If
-            If (Original_signature Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_signature")
+            If (Original_signaturee Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_signature,String)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_signaturee,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -3707,8 +4080,8 @@ Namespace MinChurchDbDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal memberID As String, ByVal eventID As String, ByVal arrivalTime As Global.System.Nullable(Of Global.System.TimeSpan), ByVal temperature As String, ByVal signature As String, ByVal Original_meetingID As String, ByVal Original_memberID As String, ByVal Original_eventID As String, ByVal Original_arrivalTime As Global.System.Nullable(Of Global.System.TimeSpan), ByVal Original_temperature As String, ByVal Original_signature As String) As Integer
-            Return Me.Update(Original_meetingID, memberID, eventID, arrivalTime, temperature, signature, Original_meetingID, Original_memberID, Original_eventID, Original_arrivalTime, Original_temperature, Original_signature)
+        Public Overloads Overridable Function Update(ByVal arrivalTime As String, ByVal temperature As String, ByVal signaturee As String, ByVal Original_memberID As String, ByVal Original_eventID As String, ByVal Original_arrivalTime As String, ByVal Original_temperature As String, ByVal Original_signaturee As String) As Integer
+            Return Me.Update(Original_memberID, Original_eventID, arrivalTime, temperature, signaturee, Original_memberID, Original_eventID, Original_arrivalTime, Original_temperature, Original_signaturee)
         End Function
     End Class
     
@@ -4279,19 +4652,19 @@ Namespace MinChurchDbDataSetTableAdapters
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Meeting] WHERE (([eventID] = @Original_eventID) AND ((@IsNull_"& _ 
-                "title = 1 AND [title] IS NULL) OR ([title] = @Original_title)) AND ((@IsNull_lit"& _ 
-                "urgist = 1 AND [liturgist] IS NULL) OR ([liturgist] = @Original_liturgist)) AND "& _ 
-                "((@IsNull_resourcePerson = 1 AND [resourcePerson] IS NULL) OR ([resourcePerson] "& _ 
-                "= @Original_resourcePerson)) AND ([date] = @Original_date))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Meeting] WHERE (([eventID] = @Original_eventID) AND ([title] ="& _ 
+                " @Original_title) AND ((@IsNull_liturgist = 1 AND [liturgist] IS NULL) OR ([litu"& _ 
+                "rgist] = @Original_liturgist)) AND ((@IsNull_resourcePerson = 1 AND [resourcePer"& _ 
+                "son] IS NULL) OR ([resourcePerson] = @Original_resourcePerson)) AND ((@IsNull_da"& _ 
+                "te = 1 AND [date] IS NULL) OR ([date] = @Original_date)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_eventID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_title", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_title", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_liturgist", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "liturgist", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_liturgist", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "liturgist", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_resourcePerson", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "resourcePerson", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_resourcePerson", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "resourcePerson", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_date", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_date", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
@@ -4309,12 +4682,12 @@ Namespace MinChurchDbDataSetTableAdapters
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Meeting] SET [eventID] = @eventID, [title] = @title, [liturgist] = "& _ 
                 "@liturgist, [resourcePerson] = @resourcePerson, [date] = @date WHERE (([eventID]"& _ 
-                " = @Original_eventID) AND ((@IsNull_title = 1 AND [title] IS NULL) OR ([title] ="& _ 
-                " @Original_title)) AND ((@IsNull_liturgist = 1 AND [liturgist] IS NULL) OR ([lit"& _ 
-                "urgist] = @Original_liturgist)) AND ((@IsNull_resourcePerson = 1 AND [resourcePe"& _ 
-                "rson] IS NULL) OR ([resourcePerson] = @Original_resourcePerson)) AND ([date] = @"& _ 
-                "Original_date));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT eventID, title, liturgist, resourcePerson, date FROM Me"& _ 
-                "eting WHERE (eventID = @eventID)"
+                " = @Original_eventID) AND ([title] = @Original_title) AND ((@IsNull_liturgist = "& _ 
+                "1 AND [liturgist] IS NULL) OR ([liturgist] = @Original_liturgist)) AND ((@IsNull"& _ 
+                "_resourcePerson = 1 AND [resourcePerson] IS NULL) OR ([resourcePerson] = @Origin"& _ 
+                "al_resourcePerson)) AND ((@IsNull_date = 1 AND [date] IS NULL) OR ([date] = @Ori"& _ 
+                "ginal_date)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT eventID, title, liturgist, resourcePerson, date FROM Meet"& _ 
+                "ing WHERE (eventID = @eventID)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@eventID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@title", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -4322,12 +4695,12 @@ Namespace MinChurchDbDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@resourcePerson", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "resourcePerson", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@date", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_eventID", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "eventID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_title", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_title", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_liturgist", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "liturgist", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_liturgist", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "liturgist", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_resourcePerson", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "resourcePerson", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_resourcePerson", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "resourcePerson", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_date", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_date", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
@@ -4411,29 +4784,29 @@ Namespace MinChurchDbDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_eventID,String)
             End If
             If (Original_title Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("Original_title")
             Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_title,String)
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_title,String)
             End If
             If (Original_liturgist Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_liturgist,String)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_liturgist,String)
             End If
             If (Original_resourcePerson Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_resourcePerson,String)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_resourcePerson,String)
             End If
             If (Original_date Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_date")
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_date,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
@@ -4462,7 +4835,7 @@ Namespace MinChurchDbDataSetTableAdapters
                 Me.Adapter.InsertCommand.Parameters(0).Value = CType(eventID,String)
             End If
             If (title Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("title")
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = CType(title,String)
             End If
@@ -4477,7 +4850,7 @@ Namespace MinChurchDbDataSetTableAdapters
                 Me.Adapter.InsertCommand.Parameters(3).Value = CType(resourcePerson,String)
             End If
             If (_date Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("_date")
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.InsertCommand.Parameters(4).Value = CType(_date,String)
             End If
@@ -4507,7 +4880,7 @@ Namespace MinChurchDbDataSetTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(eventID,String)
             End If
             If (title Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("title")
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = CType(title,String)
             End If
@@ -4522,7 +4895,7 @@ Namespace MinChurchDbDataSetTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(3).Value = CType(resourcePerson,String)
             End If
             If (_date Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("_date")
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(4).Value = CType(_date,String)
             End If
@@ -4532,29 +4905,29 @@ Namespace MinChurchDbDataSetTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_eventID,String)
             End If
             If (Original_title Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("Original_title")
             Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_title,String)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_title,String)
             End If
             If (Original_liturgist Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_liturgist,String)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_liturgist,String)
             End If
             If (Original_resourcePerson Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_resourcePerson,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_resourcePerson,String)
             End If
             If (Original_date Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_date")
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
                 Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_date,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
@@ -5754,6 +6127,180 @@ Namespace MinChurchDbDataSetTableAdapters
                     Me.Adapter.InsertCommand.Connection.Close
                 End If
             End Try
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class DuesInfoTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "DuesInfo"
+            tableMapping.ColumnMappings.Add("memberID", "memberID")
+            tableMapping.ColumnMappings.Add("Names", "Names")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.Mini_Church_App.My.MySettings.Default.MinChurchDbConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT memberID, Names FROM dbo.DuesInfo"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As MinChurchDbDataSet.DuesInfoDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As MinChurchDbDataSet.DuesInfoDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As MinChurchDbDataSet.DuesInfoDataTable = New MinChurchDbDataSet.DuesInfoDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
         End Function
     End Class
     

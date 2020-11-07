@@ -1,4 +1,4 @@
-﻿Public Class MemberRegistration
+﻿Public Class frmMemberRegistration
     Private Sub MemberRegistration_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub

@@ -22,5 +22,170 @@ Mini Church App
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MemberDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.System_AccessDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesInfoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MemberRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.System_AccessRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesInfoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MemberRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.System_AccessRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesInfoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.AttendanceTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.DuesTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.MeetingTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.MemberTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.System_AccessTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.DuesInfoTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:Mini_Church_App.MinChurchDbDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(Mini_Church_App.MinChurchDbDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:Mini_Church_App.MinChurchDbDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(Mini_Church_App.MinChurchDbDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:Mini_Church_App.MinChurchDbDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(Mini_Church_App.MinChurchDbDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:Mini_Church_App.MinChurchDbDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:Mini_Church_App.MinChurchDbDataSetTableAdapters.TableAdapterManager.UpdateAll(Mini_Church_App.MinChurchDbDataSet)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
 </members>
 </doc>

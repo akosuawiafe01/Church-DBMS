@@ -32,6 +32,7 @@ Partial Class frmMainMenu
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.MenuStrip1.SuspendLayout()
         Me.tbAbout.SuspendLayout()
         Me.SuspendLayout()
@@ -72,7 +73,7 @@ Partial Class frmMainMenu
         'ScheduleMeetingToolStripMenuItem
         '
         Me.ScheduleMeetingToolStripMenuItem.Name = "ScheduleMeetingToolStripMenuItem"
-        Me.ScheduleMeetingToolStripMenuItem.Size = New System.Drawing.Size(122, 20)
+        Me.ScheduleMeetingToolStripMenuItem.Size = New System.Drawing.Size(123, 20)
         Me.ScheduleMeetingToolStripMenuItem.Text = "Schedule a Meeting"
         '
         'tbAbout
@@ -116,12 +117,29 @@ Partial Class frmMainMenu
         Me.TabPage3.Text = "Today's Quotes"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'btnLogout
+        '
+        Me.btnLogout.CheckedState.Parent = Me.btnLogout
+        Me.btnLogout.CustomImages.Parent = Me.btnLogout
+        Me.btnLogout.FillColor = System.Drawing.Color.White
+        Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnLogout.ForeColor = System.Drawing.Color.Black
+        Me.btnLogout.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnLogout.HoverState.Parent = Me.btnLogout
+        Me.btnLogout.Location = New System.Drawing.Point(1201, 0)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.ShadowDecoration.Parent = Me.btnLogout
+        Me.btnLogout.Size = New System.Drawing.Size(102, 22)
+        Me.btnLogout.TabIndex = 4
+        Me.btnLogout.Text = "Logout"
+        '
         'frmMainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1315, 620)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnLogout)
         Me.Controls.Add(Me.tbAbout)
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
@@ -148,4 +166,5 @@ Partial Class frmMainMenu
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents btnLogout As Guna.UI2.WinForms.Guna2Button
 End Class

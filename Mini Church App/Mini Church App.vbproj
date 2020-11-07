@@ -111,11 +111,16 @@
     <Compile Include="frmSchedMeet.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MemberRegistration.Designer.vb">
-      <DependentUpon>MemberRegistration.vb</DependentUpon>
+    <Compile Include="frmMemberRegistration.Designer.vb">
+      <DependentUpon>frmMemberRegistration.vb</DependentUpon>
     </Compile>
-    <Compile Include="MemberRegistration.vb">
+    <Compile Include="frmMemberRegistration.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MinChurchDbDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MinChurchDbDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -132,6 +137,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TheRandomNumberGenerator.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmAttendance.resx">
@@ -149,8 +155,8 @@
     <EmbeddedResource Include="frmSchedMeet.resx">
       <DependentUpon>frmSchedMeet.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberRegistration.resx">
-      <DependentUpon>MemberRegistration.vb</DependentUpon>
+    <EmbeddedResource Include="frmMemberRegistration.resx">
+      <DependentUpon>frmMemberRegistration.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -160,6 +166,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="MinChurchDbDataSet.xsc">
+      <DependentUpon>MinChurchDbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MinChurchDbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MinChurchDbDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MinChurchDbDataSet.xss">
+      <DependentUpon>MinChurchDbDataSet.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

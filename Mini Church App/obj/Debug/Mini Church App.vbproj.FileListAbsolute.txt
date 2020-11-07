@@ -10,7 +10,6 @@ D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmLogin.resources
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmMainMenu.resources
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmSchedMeet.resources
-D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.MemberRegistration.resources
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.Resources.resources
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.vbproj.GenerateResource.cache
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.vbproj.CoreCompileInputs.cache
@@ -18,3 +17,4 @@ D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.exe
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.xml
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.pdb
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmMemberRegistration.resources

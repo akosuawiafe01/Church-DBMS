@@ -73,7 +73,7 @@ Partial Class frmLogin
         Me.txtPassword.SelectedText = ""
         Me.txtPassword.ShadowDecoration.Parent = Me.txtPassword
         Me.txtPassword.Size = New System.Drawing.Size(372, 41)
-        Me.txtPassword.TabIndex = 2
+        Me.txtPassword.TabIndex = 3
         '
         'txtUsername
         '
@@ -95,7 +95,7 @@ Partial Class frmLogin
         Me.txtUsername.SelectedText = ""
         Me.txtUsername.ShadowDecoration.Parent = Me.txtUsername
         Me.txtUsername.Size = New System.Drawing.Size(372, 41)
-        Me.txtUsername.TabIndex = 3
+        Me.txtUsername.TabIndex = 2
         '
         'btnLogin
         '
@@ -137,6 +137,7 @@ Partial Class frmLogin
         Me.Name = "frmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login Form"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Guna2GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
