@@ -30,28 +30,28 @@ Partial Class frmAttendance
         Me.txtMemID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.dtpMeetDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lbArrivalTime = New System.Windows.Forms.Label()
+        Me.rbSign = New Guna.UI2.WinForms.Guna2RadioButton()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.txtTemperature = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.MeetingBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.MinChurchDbDataSet = New Mini_Church_App.MinChurchDbDataSet()
         Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.btnMark = New Guna.UI2.WinForms.Guna2Button()
         Me.btnSearchMemNameAtt = New Guna.UI2.WinForms.Guna2Button()
-        Me.dtpArrivalTime = New Guna.UI2.WinForms.Guna2DateTimePicker()
-        Me.cmbMeetTitle = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.MinChurchDbDataSet = New Mini_Church_App.MinChurchDbDataSet()
-        Me.MeetingBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.MeetingTableAdapter = New Mini_Church_App.MinChurchDbDataSetTableAdapters.MeetingTableAdapter()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.rbSign = New Guna.UI2.WinForms.Guna2RadioButton()
+        Me.ArrivalTimer = New System.Windows.Forms.Timer(Me.components)
         Me.gpDets.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.MinChurchDbDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MeetingBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MinChurchDbDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GunaLabel1
         '
-        Me.GunaLabel1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.GunaLabel1.Font = New System.Drawing.Font("Segoe UI", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel1.Location = New System.Drawing.Point(12, 9)
         Me.GunaLabel1.Name = "GunaLabel1"
         Me.GunaLabel1.Size = New System.Drawing.Size(1262, 60)
@@ -89,7 +89,6 @@ Partial Class frmAttendance
         Me.gpDets.Controls.Add(Me.txtMemID)
         Me.gpDets.Controls.Add(Me.Label2)
         Me.gpDets.Controls.Add(Me.Label1)
-        Me.gpDets.Enabled = False
         Me.gpDets.Location = New System.Drawing.Point(15, 145)
         Me.gpDets.Name = "gpDets"
         Me.gpDets.Size = New System.Drawing.Size(1259, 151)
@@ -146,7 +145,6 @@ Partial Class frmAttendance
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Enabled = False
         Me.Label2.Location = New System.Drawing.Point(41, 78)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(35, 13)
@@ -156,20 +154,42 @@ Partial Class frmAttendance
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Enabled = False
         Me.Label1.Location = New System.Drawing.Point(41, 35)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(59, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Member ID"
         '
+        'dtpMeetDate
+        '
+        Me.dtpMeetDate.CheckedState.Parent = Me.dtpMeetDate
+        Me.dtpMeetDate.FillColor = System.Drawing.Color.White
+        Me.dtpMeetDate.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.dtpMeetDate.HoverState.Parent = Me.dtpMeetDate
+        Me.dtpMeetDate.Location = New System.Drawing.Point(764, 26)
+        Me.dtpMeetDate.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        Me.dtpMeetDate.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.dtpMeetDate.Name = "dtpMeetDate"
+        Me.dtpMeetDate.ShadowDecoration.Parent = Me.dtpMeetDate
+        Me.dtpMeetDate.Size = New System.Drawing.Size(199, 32)
+        Me.dtpMeetDate.TabIndex = 5
+        Me.dtpMeetDate.Value = New Date(2020, 11, 8, 7, 57, 56, 723)
+        '
+        'Label5
+        '
+        Me.Label5.Location = New System.Drawing.Point(658, 35)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(100, 23)
+        Me.Label5.TabIndex = 4
+        Me.Label5.Text = "Date"
+        '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.dtpMeetDate)
+        Me.GroupBox2.Controls.Add(Me.lbArrivalTime)
+        Me.GroupBox2.Controls.Add(Me.Label5)
         Me.GroupBox2.Controls.Add(Me.rbSign)
         Me.GroupBox2.Controls.Add(Me.Label4)
-        Me.GroupBox2.Controls.Add(Me.dtpArrivalTime)
-        Me.GroupBox2.Controls.Add(Me.cmbMeetTitle)
-        Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.txtTemperature)
         Me.GroupBox2.Location = New System.Drawing.Point(15, 317)
         Me.GroupBox2.Name = "GroupBox2"
@@ -178,13 +198,45 @@ Partial Class frmAttendance
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Mark Attendance"
         '
-        'Label3
+        'lbArrivalTime
         '
-        Me.Label3.Location = New System.Drawing.Point(658, 43)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(132, 21)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Meeting Title"
+        Me.lbArrivalTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lbArrivalTime.Enabled = False
+        Me.lbArrivalTime.Location = New System.Drawing.Point(149, 94)
+        Me.lbArrivalTime.Name = "lbArrivalTime"
+        Me.lbArrivalTime.Size = New System.Drawing.Size(247, 29)
+        Me.lbArrivalTime.TabIndex = 7
+        Me.lbArrivalTime.Text = "Arrival Time"
+        '
+        'rbSign
+        '
+        Me.rbSign.AutoSize = True
+        Me.rbSign.Checked = True
+        Me.rbSign.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.rbSign.CheckedState.BorderThickness = 0
+        Me.rbSign.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.rbSign.CheckedState.InnerColor = System.Drawing.Color.White
+        Me.rbSign.CheckedState.InnerOffset = -4
+        Me.rbSign.Location = New System.Drawing.Point(661, 108)
+        Me.rbSign.Name = "rbSign"
+        Me.rbSign.Size = New System.Drawing.Size(58, 17)
+        Me.rbSign.TabIndex = 9
+        Me.rbSign.TabStop = True
+        Me.rbSign.Text = "Signed"
+        Me.rbSign.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.rbSign.UncheckedState.BorderThickness = 2
+        Me.rbSign.UncheckedState.FillColor = System.Drawing.Color.Transparent
+        Me.rbSign.UncheckedState.InnerColor = System.Drawing.Color.Transparent
+        Me.rbSign.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(58, 94)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(62, 13)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Arrival Time"
         '
         'txtTemperature
         '
@@ -207,6 +259,16 @@ Partial Class frmAttendance
         Me.txtTemperature.ShadowDecoration.Parent = Me.txtTemperature
         Me.txtTemperature.Size = New System.Drawing.Size(247, 29)
         Me.txtTemperature.TabIndex = 0
+        '
+        'MeetingBindingSource
+        '
+        Me.MeetingBindingSource.DataMember = "Meeting"
+        Me.MeetingBindingSource.DataSource = Me.MinChurchDbDataSet
+        '
+        'MinChurchDbDataSet
+        '
+        Me.MinChurchDbDataSet.DataSetName = "MinChurchDbDataSet"
+        Me.MinChurchDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'btnCancel
         '
@@ -250,84 +312,8 @@ Partial Class frmAttendance
         Me.btnSearchMemNameAtt.TabIndex = 6
         Me.btnSearchMemNameAtt.Text = "Search by name"
         '
-        'dtpArrivalTime
+        'ArrivalTimer
         '
-        Me.dtpArrivalTime.CheckedState.Parent = Me.dtpArrivalTime
-        Me.dtpArrivalTime.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
-        Me.dtpArrivalTime.HoverState.Parent = Me.dtpArrivalTime
-        Me.dtpArrivalTime.Location = New System.Drawing.Point(152, 78)
-        Me.dtpArrivalTime.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
-        Me.dtpArrivalTime.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
-        Me.dtpArrivalTime.Name = "dtpArrivalTime"
-        Me.dtpArrivalTime.ShadowDecoration.Parent = Me.dtpArrivalTime
-        Me.dtpArrivalTime.Size = New System.Drawing.Size(247, 29)
-        Me.dtpArrivalTime.TabIndex = 7
-        Me.dtpArrivalTime.Value = New Date(2020, 11, 6, 22, 34, 22, 249)
-        '
-        'cmbMeetTitle
-        '
-        Me.cmbMeetTitle.BackColor = System.Drawing.Color.Transparent
-        Me.cmbMeetTitle.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.MeetingBindingSource, "eventID", True))
-        Me.cmbMeetTitle.DataSource = Me.MeetingBindingSource
-        Me.cmbMeetTitle.DisplayMember = "title"
-        Me.cmbMeetTitle.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbMeetTitle.FocusedColor = System.Drawing.Color.Empty
-        Me.cmbMeetTitle.FocusedState.Parent = Me.cmbMeetTitle
-        Me.cmbMeetTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cmbMeetTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.cmbMeetTitle.FormattingEnabled = True
-        Me.cmbMeetTitle.HoverState.Parent = Me.cmbMeetTitle
-        Me.cmbMeetTitle.ItemHeight = 30
-        Me.cmbMeetTitle.ItemsAppearance.Parent = Me.cmbMeetTitle
-        Me.cmbMeetTitle.Location = New System.Drawing.Point(835, 28)
-        Me.cmbMeetTitle.Name = "cmbMeetTitle"
-        Me.cmbMeetTitle.ShadowDecoration.Parent = Me.cmbMeetTitle
-        Me.cmbMeetTitle.Size = New System.Drawing.Size(230, 36)
-        Me.cmbMeetTitle.TabIndex = 5
-        Me.cmbMeetTitle.ValueMember = "eventID"
-        '
-        'MinChurchDbDataSet
-        '
-        Me.MinChurchDbDataSet.DataSetName = "MinChurchDbDataSet"
-        Me.MinChurchDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'MeetingBindingSource
-        '
-        Me.MeetingBindingSource.DataMember = "Meeting"
-        Me.MeetingBindingSource.DataSource = Me.MinChurchDbDataSet
-        '
-        'MeetingTableAdapter
-        '
-        Me.MeetingTableAdapter.ClearBeforeFill = True
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(58, 94)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(62, 13)
-        Me.Label4.TabIndex = 8
-        Me.Label4.Text = "Arrival Time"
-        '
-        'rbSign
-        '
-        Me.rbSign.AutoSize = True
-        Me.rbSign.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.rbSign.CheckedState.BorderThickness = 0
-        Me.rbSign.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.rbSign.CheckedState.InnerColor = System.Drawing.Color.White
-        Me.rbSign.CheckedState.InnerOffset = -4
-        Me.rbSign.Location = New System.Drawing.Point(661, 108)
-        Me.rbSign.Name = "rbSign"
-        Me.rbSign.Size = New System.Drawing.Size(70, 17)
-        Me.rbSign.TabIndex = 9
-        Me.rbSign.TabStop = True
-        Me.rbSign.Text = "Signature"
-        Me.rbSign.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.rbSign.UncheckedState.BorderThickness = 2
-        Me.rbSign.UncheckedState.FillColor = System.Drawing.Color.Transparent
-        Me.rbSign.UncheckedState.InnerColor = System.Drawing.Color.Transparent
-        Me.rbSign.UseVisualStyleBackColor = True
         '
         'frmAttendance
         '
@@ -349,8 +335,8 @@ Partial Class frmAttendance
         Me.gpDets.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.MinChurchDbDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MeetingBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MinChurchDbDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -367,12 +353,12 @@ Partial Class frmAttendance
     Friend WithEvents btnCancel As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnMark As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnSearchMemNameAtt As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Label3 As Label
-    Friend WithEvents dtpArrivalTime As Guna.UI2.WinForms.Guna2DateTimePicker
-    Friend WithEvents cmbMeetTitle As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents MinChurchDbDataSet As MinChurchDbDataSet
     Friend WithEvents MeetingBindingSource As BindingSource
-    Friend WithEvents MeetingTableAdapter As MinChurchDbDataSetTableAdapters.MeetingTableAdapter
     Friend WithEvents Label4 As Label
     Friend WithEvents rbSign As Guna.UI2.WinForms.Guna2RadioButton
+    Friend WithEvents lbArrivalTime As Label
+    Friend WithEvents ArrivalTimer As Timer
+    Friend WithEvents Label5 As Label
+    Friend WithEvents dtpMeetDate As Guna.UI2.WinForms.Guna2DateTimePicker
 End Class

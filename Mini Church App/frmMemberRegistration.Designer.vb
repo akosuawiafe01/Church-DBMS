@@ -39,7 +39,7 @@ Partial Class frmMemberRegistration
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblRegistrationDate = New Guna.UI.WinForms.GunaLabel()
         Me.dtpRegDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
-        Me.txtAltEmerCon = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.txtEmergencyConRel = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtEmerCon = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtDigAddr = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtResLoc = New Guna.UI2.WinForms.Guna2TextBox()
@@ -49,6 +49,10 @@ Partial Class frmMemberRegistration
         Me.GunaLabel2 = New Guna.UI.WinForms.GunaLabel()
         Me.txtMemID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.labMemID = New Guna.UI.WinForms.GunaLabel()
+        Me.txtSearchReg = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.btnSearchReg = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnUpdateMemDeats = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnClearSearch = New Guna.UI2.WinForms.Guna2Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.pbProfilePic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +60,7 @@ Partial Class frmMemberRegistration
         '
         'GunaLabel1
         '
-        Me.GunaLabel1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.GunaLabel1.Font = New System.Drawing.Font("Segoe UI", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel1.Location = New System.Drawing.Point(-1, 1)
         Me.GunaLabel1.Name = "GunaLabel1"
         Me.GunaLabel1.Size = New System.Drawing.Size(1296, 60)
@@ -92,16 +96,16 @@ Partial Class frmMemberRegistration
         Me.GunaLabel3.Name = "GunaLabel3"
         Me.GunaLabel3.Size = New System.Drawing.Size(226, 27)
         Me.GunaLabel3.TabIndex = 8
-        Me.GunaLabel3.Text = "Date Of Birth"
+        Me.GunaLabel3.Text = "Date of Birth"
         Me.GunaLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'cmbTitle
         '
         Me.cmbTitle.FormattingEnabled = True
-        Me.cmbTitle.Items.AddRange(New Object() {"Mr.", "Mrs.", "Miss"})
+        Me.cmbTitle.Items.AddRange(New Object() {"Mr.", "Miss", "Mrs."})
         Me.cmbTitle.Location = New System.Drawing.Point(33, 40)
         Me.cmbTitle.Name = "cmbTitle"
-        Me.cmbTitle.Size = New System.Drawing.Size(225, 21)
+        Me.cmbTitle.Size = New System.Drawing.Size(226, 21)
         Me.cmbTitle.TabIndex = 9
         Me.cmbTitle.Text = "Title"
         '
@@ -126,7 +130,7 @@ Partial Class frmMemberRegistration
         Me.cmbMarStats.Items.AddRange(New Object() {"Single", "Married"})
         Me.cmbMarStats.Location = New System.Drawing.Point(397, 237)
         Me.cmbMarStats.Name = "cmbMarStats"
-        Me.cmbMarStats.Size = New System.Drawing.Size(225, 21)
+        Me.cmbMarStats.Size = New System.Drawing.Size(226, 21)
         Me.cmbMarStats.TabIndex = 9
         Me.cmbMarStats.Text = "Marital Status"
         '
@@ -136,7 +140,7 @@ Partial Class frmMemberRegistration
         Me.cmbGender.Items.AddRange(New Object() {"Male", "Female"})
         Me.cmbGender.Location = New System.Drawing.Point(397, 40)
         Me.cmbGender.Name = "cmbGender"
-        Me.cmbGender.Size = New System.Drawing.Size(225, 21)
+        Me.cmbGender.Size = New System.Drawing.Size(226, 21)
         Me.cmbGender.TabIndex = 8
         Me.cmbGender.Text = "Gender"
         '
@@ -298,7 +302,7 @@ Partial Class frmMemberRegistration
         '
         Me.GroupBox2.Controls.Add(Me.lblRegistrationDate)
         Me.GroupBox2.Controls.Add(Me.dtpRegDate)
-        Me.GroupBox2.Controls.Add(Me.txtAltEmerCon)
+        Me.GroupBox2.Controls.Add(Me.txtEmergencyConRel)
         Me.GroupBox2.Controls.Add(Me.txtEmerCon)
         Me.GroupBox2.Controls.Add(Me.txtDigAddr)
         Me.GroupBox2.Controls.Add(Me.txtResLoc)
@@ -312,7 +316,7 @@ Partial Class frmMemberRegistration
         'lblRegistrationDate
         '
         Me.lblRegistrationDate.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.lblRegistrationDate.Location = New System.Drawing.Point(76, 216)
+        Me.lblRegistrationDate.Location = New System.Drawing.Point(25, 216)
         Me.lblRegistrationDate.Name = "lblRegistrationDate"
         Me.lblRegistrationDate.Size = New System.Drawing.Size(134, 27)
         Me.lblRegistrationDate.TabIndex = 13
@@ -322,39 +326,40 @@ Partial Class frmMemberRegistration
         'dtpRegDate
         '
         Me.dtpRegDate.CheckedState.Parent = Me.dtpRegDate
+        Me.dtpRegDate.Enabled = False
         Me.dtpRegDate.FillColor = System.Drawing.Color.White
         Me.dtpRegDate.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
         Me.dtpRegDate.HoverState.Parent = Me.dtpRegDate
-        Me.dtpRegDate.Location = New System.Drawing.Point(231, 216)
+        Me.dtpRegDate.Location = New System.Drawing.Point(181, 216)
         Me.dtpRegDate.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
         Me.dtpRegDate.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
         Me.dtpRegDate.Name = "dtpRegDate"
         Me.dtpRegDate.ShadowDecoration.Parent = Me.dtpRegDate
-        Me.dtpRegDate.Size = New System.Drawing.Size(200, 27)
+        Me.dtpRegDate.Size = New System.Drawing.Size(250, 27)
         Me.dtpRegDate.TabIndex = 12
         Me.dtpRegDate.Value = New Date(2020, 11, 3, 17, 48, 5, 230)
         '
-        'txtAltEmerCon
+        'txtEmergencyConRel
         '
-        Me.txtAltEmerCon.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtAltEmerCon.DefaultText = ""
-        Me.txtAltEmerCon.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtAltEmerCon.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtAltEmerCon.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtAltEmerCon.DisabledState.Parent = Me.txtAltEmerCon
-        Me.txtAltEmerCon.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtAltEmerCon.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtAltEmerCon.FocusedState.Parent = Me.txtAltEmerCon
-        Me.txtAltEmerCon.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtAltEmerCon.HoverState.Parent = Me.txtAltEmerCon
-        Me.txtAltEmerCon.Location = New System.Drawing.Point(138, 171)
-        Me.txtAltEmerCon.Name = "txtAltEmerCon"
-        Me.txtAltEmerCon.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.txtAltEmerCon.PlaceholderText = "Alternate Emergency Contact"
-        Me.txtAltEmerCon.SelectedText = ""
-        Me.txtAltEmerCon.ShadowDecoration.Parent = Me.txtAltEmerCon
-        Me.txtAltEmerCon.Size = New System.Drawing.Size(226, 27)
-        Me.txtAltEmerCon.TabIndex = 11
+        Me.txtEmergencyConRel.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtEmergencyConRel.DefaultText = ""
+        Me.txtEmergencyConRel.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtEmergencyConRel.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtEmergencyConRel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtEmergencyConRel.DisabledState.Parent = Me.txtEmergencyConRel
+        Me.txtEmergencyConRel.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtEmergencyConRel.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtEmergencyConRel.FocusedState.Parent = Me.txtEmergencyConRel
+        Me.txtEmergencyConRel.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtEmergencyConRel.HoverState.Parent = Me.txtEmergencyConRel
+        Me.txtEmergencyConRel.Location = New System.Drawing.Point(28, 171)
+        Me.txtEmergencyConRel.Name = "txtEmergencyConRel"
+        Me.txtEmergencyConRel.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txtEmergencyConRel.PlaceholderText = "Emergency Contact Relationship"
+        Me.txtEmergencyConRel.SelectedText = ""
+        Me.txtEmergencyConRel.ShadowDecoration.Parent = Me.txtEmergencyConRel
+        Me.txtEmergencyConRel.Size = New System.Drawing.Size(411, 27)
+        Me.txtEmergencyConRel.TabIndex = 11
         '
         'txtEmerCon
         '
@@ -369,13 +374,13 @@ Partial Class frmMemberRegistration
         Me.txtEmerCon.FocusedState.Parent = Me.txtEmerCon
         Me.txtEmerCon.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtEmerCon.HoverState.Parent = Me.txtEmerCon
-        Me.txtEmerCon.Location = New System.Drawing.Point(138, 127)
+        Me.txtEmerCon.Location = New System.Drawing.Point(28, 127)
         Me.txtEmerCon.Name = "txtEmerCon"
         Me.txtEmerCon.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtEmerCon.PlaceholderText = "Emergency Contact"
         Me.txtEmerCon.SelectedText = ""
         Me.txtEmerCon.ShadowDecoration.Parent = Me.txtEmerCon
-        Me.txtEmerCon.Size = New System.Drawing.Size(226, 27)
+        Me.txtEmerCon.Size = New System.Drawing.Size(411, 27)
         Me.txtEmerCon.TabIndex = 10
         '
         'txtDigAddr
@@ -391,13 +396,13 @@ Partial Class frmMemberRegistration
         Me.txtDigAddr.FocusedState.Parent = Me.txtDigAddr
         Me.txtDigAddr.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtDigAddr.HoverState.Parent = Me.txtDigAddr
-        Me.txtDigAddr.Location = New System.Drawing.Point(138, 77)
+        Me.txtDigAddr.Location = New System.Drawing.Point(28, 77)
         Me.txtDigAddr.Name = "txtDigAddr"
         Me.txtDigAddr.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtDigAddr.PlaceholderText = "Digital Address"
         Me.txtDigAddr.SelectedText = ""
         Me.txtDigAddr.ShadowDecoration.Parent = Me.txtDigAddr
-        Me.txtDigAddr.Size = New System.Drawing.Size(226, 27)
+        Me.txtDigAddr.Size = New System.Drawing.Size(411, 27)
         Me.txtDigAddr.TabIndex = 9
         '
         'txtResLoc
@@ -413,17 +418,18 @@ Partial Class frmMemberRegistration
         Me.txtResLoc.FocusedState.Parent = Me.txtResLoc
         Me.txtResLoc.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtResLoc.HoverState.Parent = Me.txtResLoc
-        Me.txtResLoc.Location = New System.Drawing.Point(138, 27)
+        Me.txtResLoc.Location = New System.Drawing.Point(28, 27)
         Me.txtResLoc.Name = "txtResLoc"
         Me.txtResLoc.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtResLoc.PlaceholderText = "Residence Location"
         Me.txtResLoc.SelectedText = ""
         Me.txtResLoc.ShadowDecoration.Parent = Me.txtResLoc
-        Me.txtResLoc.Size = New System.Drawing.Size(226, 27)
+        Me.txtResLoc.Size = New System.Drawing.Size(411, 27)
         Me.txtResLoc.TabIndex = 8
         '
         'pbProfilePic
         '
+        Me.pbProfilePic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.pbProfilePic.Location = New System.Drawing.Point(995, 112)
         Me.pbProfilePic.Name = "pbProfilePic"
         Me.pbProfilePic.Size = New System.Drawing.Size(252, 130)
@@ -451,7 +457,7 @@ Partial Class frmMemberRegistration
         Me.btnRegMeme.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnRegMeme.ForeColor = System.Drawing.Color.White
         Me.btnRegMeme.HoverState.Parent = Me.btnRegMeme
-        Me.btnRegMeme.Location = New System.Drawing.Point(1037, 575)
+        Me.btnRegMeme.Location = New System.Drawing.Point(882, 575)
         Me.btnRegMeme.Name = "btnRegMeme"
         Me.btnRegMeme.ShadowDecoration.Parent = Me.btnRegMeme
         Me.btnRegMeme.Size = New System.Drawing.Size(76, 24)
@@ -470,6 +476,7 @@ Partial Class frmMemberRegistration
         '
         'txtMemID
         '
+        Me.txtMemID.BorderColor = System.Drawing.Color.Red
         Me.txtMemID.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtMemID.DefaultText = ""
         Me.txtMemID.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -477,17 +484,18 @@ Partial Class frmMemberRegistration
         Me.txtMemID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtMemID.DisabledState.Parent = Me.txtMemID
         Me.txtMemID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtMemID.Enabled = False
         Me.txtMemID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtMemID.FocusedState.Parent = Me.txtMemID
         Me.txtMemID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtMemID.HoverState.Parent = Me.txtMemID
-        Me.txtMemID.Location = New System.Drawing.Point(181, 172)
+        Me.txtMemID.Location = New System.Drawing.Point(114, 170)
         Me.txtMemID.Name = "txtMemID"
         Me.txtMemID.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtMemID.PlaceholderText = ""
         Me.txtMemID.SelectedText = ""
         Me.txtMemID.ShadowDecoration.Parent = Me.txtMemID
-        Me.txtMemID.Size = New System.Drawing.Size(209, 27)
+        Me.txtMemID.Size = New System.Drawing.Size(157, 27)
         Me.txtMemID.TabIndex = 0
         '
         'labMemID
@@ -495,17 +503,87 @@ Partial Class frmMemberRegistration
         Me.labMemID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.labMemID.Location = New System.Drawing.Point(42, 172)
         Me.labMemID.Name = "labMemID"
-        Me.labMemID.Size = New System.Drawing.Size(112, 27)
+        Me.labMemID.Size = New System.Drawing.Size(66, 27)
         Me.labMemID.TabIndex = 7
         Me.labMemID.Text = "Member ID"
         '
-        'MemberRegistration
+        'txtSearchReg
+        '
+        Me.txtSearchReg.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.txtSearchReg.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.txtSearchReg.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSearchReg.DefaultText = ""
+        Me.txtSearchReg.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtSearchReg.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtSearchReg.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchReg.DisabledState.Parent = Me.txtSearchReg
+        Me.txtSearchReg.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchReg.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchReg.FocusedState.Parent = Me.txtSearchReg
+        Me.txtSearchReg.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchReg.HoverState.Parent = Me.txtSearchReg
+        Me.txtSearchReg.Location = New System.Drawing.Point(321, 169)
+        Me.txtSearchReg.Name = "txtSearchReg"
+        Me.txtSearchReg.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txtSearchReg.PlaceholderText = "Search for member"
+        Me.txtSearchReg.SelectedText = ""
+        Me.txtSearchReg.ShadowDecoration.Parent = Me.txtSearchReg
+        Me.txtSearchReg.Size = New System.Drawing.Size(382, 28)
+        Me.txtSearchReg.TabIndex = 8
+        '
+        'btnSearchReg
+        '
+        Me.btnSearchReg.CheckedState.Parent = Me.btnSearchReg
+        Me.btnSearchReg.CustomImages.Parent = Me.btnSearchReg
+        Me.btnSearchReg.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnSearchReg.ForeColor = System.Drawing.Color.White
+        Me.btnSearchReg.HoverState.Parent = Me.btnSearchReg
+        Me.btnSearchReg.Location = New System.Drawing.Point(610, 203)
+        Me.btnSearchReg.Name = "btnSearchReg"
+        Me.btnSearchReg.ShadowDecoration.Parent = Me.btnSearchReg
+        Me.btnSearchReg.Size = New System.Drawing.Size(93, 28)
+        Me.btnSearchReg.TabIndex = 9
+        Me.btnSearchReg.Text = "Search by name"
+        '
+        'btnUpdateMemDeats
+        '
+        Me.btnUpdateMemDeats.CheckedState.Parent = Me.btnUpdateMemDeats
+        Me.btnUpdateMemDeats.CustomImages.Parent = Me.btnUpdateMemDeats
+        Me.btnUpdateMemDeats.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnUpdateMemDeats.ForeColor = System.Drawing.Color.White
+        Me.btnUpdateMemDeats.HoverState.Parent = Me.btnUpdateMemDeats
+        Me.btnUpdateMemDeats.Location = New System.Drawing.Point(1016, 575)
+        Me.btnUpdateMemDeats.Name = "btnUpdateMemDeats"
+        Me.btnUpdateMemDeats.ShadowDecoration.Parent = Me.btnUpdateMemDeats
+        Me.btnUpdateMemDeats.Size = New System.Drawing.Size(92, 24)
+        Me.btnUpdateMemDeats.TabIndex = 10
+        Me.btnUpdateMemDeats.Text = "Update Details"
+        '
+        'btnClearSearch
+        '
+        Me.btnClearSearch.CheckedState.Parent = Me.btnClearSearch
+        Me.btnClearSearch.CustomImages.Parent = Me.btnClearSearch
+        Me.btnClearSearch.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnClearSearch.ForeColor = System.Drawing.Color.White
+        Me.btnClearSearch.HoverState.Parent = Me.btnClearSearch
+        Me.btnClearSearch.Location = New System.Drawing.Point(409, 203)
+        Me.btnClearSearch.Name = "btnClearSearch"
+        Me.btnClearSearch.ShadowDecoration.Parent = Me.btnClearSearch
+        Me.btnClearSearch.Size = New System.Drawing.Size(92, 24)
+        Me.btnClearSearch.TabIndex = 11
+        Me.btnClearSearch.Text = "Clear search"
+        '
+        'frmMemberRegistration
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1295, 611)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnClearSearch)
+        Me.Controls.Add(Me.btnUpdateMemDeats)
+        Me.Controls.Add(Me.btnSearchReg)
+        Me.Controls.Add(Me.txtSearchReg)
         Me.Controls.Add(Me.labMemID)
         Me.Controls.Add(Me.txtMemID)
         Me.Controls.Add(Me.GunaLabel2)
@@ -515,7 +593,7 @@ Partial Class frmMemberRegistration
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GunaLabel1)
-        Me.Name = "MemberRegistration"
+        Me.Name = "frmMemberRegistration"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MemberRegistration"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -548,10 +626,14 @@ Partial Class frmMemberRegistration
     Friend WithEvents cmbMarStats As ComboBox
     Friend WithEvents cmbTitle As ComboBox
     Friend WithEvents GunaLabel3 As Guna.UI.WinForms.GunaLabel
-    Friend WithEvents txtAltEmerCon As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents txtEmergencyConRel As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtEmerCon As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtDigAddr As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtResLoc As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents lblRegistrationDate As Guna.UI.WinForms.GunaLabel
     Friend WithEvents dtpRegDate As Guna.UI2.WinForms.Guna2DateTimePicker
+    Friend WithEvents txtSearchReg As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents btnSearchReg As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnUpdateMemDeats As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnClearSearch As Guna.UI2.WinForms.Guna2Button
 End Class

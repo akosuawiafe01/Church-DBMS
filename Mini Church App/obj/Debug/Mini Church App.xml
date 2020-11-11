@@ -27,17 +27,7 @@ Mini Church App
 Represents a strongly typed in-memory cache of data.
 </summary>
 </member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceDataTable">
-<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member>
 <member name="T:Mini_Church_App.MinChurchDbDataSet.DuesDataTable">
-<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
@@ -52,22 +42,37 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesInfoDataTable">
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DetailsDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceRow">
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceDataTable">
 <summary>
-Represents strongly named DataRow class.
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingHeadCountDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DueYAFMembersDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AllPaidDuesDataTable">
+<summary>
+Represents the strongly named DataTable class.
 </summary>
 </member>
 <member name="T:Mini_Church_App.MinChurchDbDataSet.DuesRow">
-<summary>
-Represents strongly named DataRow class.
-</summary>
-</member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
@@ -82,22 +87,37 @@ Represents strongly named DataRow class.
 Represents strongly named DataRow class.
 </summary>
 </member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesInfoRow">
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DetailsRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
 </member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceRowChangeEvent">
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceRow">
 <summary>
-Row event argument class
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingHeadCountRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DueYAFMembersRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AllPaidDuesRow">
+<summary>
+Represents strongly named DataRow class.
 </summary>
 </member>
 <member name="T:Mini_Church_App.MinChurchDbDataSet.DuesRowChangeEvent">
-<summary>
-Row event argument class
-</summary>
-</member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
@@ -112,22 +132,37 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
-<member name="T:Mini_Church_App.MinChurchDbDataSet.DuesInfoRowChangeEvent">
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DetailsRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
 </member>
-<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.AttendanceTableAdapter">
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AttendanceRowChangeEvent">
 <summary>
-Represents the connection and commands used to retrieve and save data.
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.MeetingHeadCountRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.DueYAFMembersRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSet.AllPaidDuesRowChangeEvent">
+<summary>
+Row event argument class
 </summary>
 </member>
 <member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.DuesTableAdapter">
-<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member>
-<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.MeetingTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -142,7 +177,32 @@ Represents the connection and commands used to retrieve and save data.
 Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
-<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.DuesInfoTableAdapter">
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.DetailsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.AttendanceTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.MeetingTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.MeetingHeadCountTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.DueYAFMembersTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Mini_Church_App.MinChurchDbDataSetTableAdapters.AllPaidDuesTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>

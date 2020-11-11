@@ -31,7 +31,6 @@ Partial Class frmDues
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.dtpPayDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
-        Me.cmbPayYear = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cmbPayMonth = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.txtPayAmount = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtRecepNo = New Guna.UI2.WinForms.Guna2TextBox()
@@ -43,6 +42,7 @@ Partial Class frmDues
         Me.btnPayDues = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancelPay = New Guna.UI2.WinForms.Guna2Button()
         Me.btnSearchMem = New Guna.UI2.WinForms.Guna2Button()
+        Me.cmbPayYear = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -89,7 +89,7 @@ Partial Class frmDues
         Me.GroupBox1.Controls.Add(Me.txtMemID)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Enabled = False
-        Me.GroupBox1.Location = New System.Drawing.Point(28, 130)
+        Me.GroupBox1.Location = New System.Drawing.Point(28, 139)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(1196, 163)
         Me.GroupBox1.TabIndex = 2
@@ -121,7 +121,6 @@ Partial Class frmDues
         '
         'Label2
         '
-        Me.Label2.Enabled = False
         Me.Label2.Location = New System.Drawing.Point(582, 66)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(83, 24)
@@ -153,7 +152,6 @@ Partial Class frmDues
         '
         'Label3
         '
-        Me.Label3.Enabled = False
         Me.Label3.Location = New System.Drawing.Point(58, 66)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(164, 24)
@@ -162,8 +160,8 @@ Partial Class frmDues
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.dtpPayDate)
         Me.GroupBox2.Controls.Add(Me.cmbPayYear)
+        Me.GroupBox2.Controls.Add(Me.dtpPayDate)
         Me.GroupBox2.Controls.Add(Me.cmbPayMonth)
         Me.GroupBox2.Controls.Add(Me.txtPayAmount)
         Me.GroupBox2.Controls.Add(Me.txtRecepNo)
@@ -193,26 +191,6 @@ Partial Class frmDues
         Me.dtpPayDate.Size = New System.Drawing.Size(230, 36)
         Me.dtpPayDate.TabIndex = 7
         Me.dtpPayDate.Value = New Date(2020, 10, 27, 11, 36, 15, 338)
-        '
-        'cmbPayYear
-        '
-        Me.cmbPayYear.BackColor = System.Drawing.Color.Transparent
-        Me.cmbPayYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbPayYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbPayYear.FocusedColor = System.Drawing.Color.Empty
-        Me.cmbPayYear.FocusedState.Parent = Me.cmbPayYear
-        Me.cmbPayYear.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cmbPayYear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.cmbPayYear.FormattingEnabled = True
-        Me.cmbPayYear.HoverState.Parent = Me.cmbPayYear
-        Me.cmbPayYear.ItemHeight = 16
-        Me.cmbPayYear.Items.AddRange(New Object() {"2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2027", "2028", "2029", "2030", "2031"})
-        Me.cmbPayYear.ItemsAppearance.Parent = Me.cmbPayYear
-        Me.cmbPayYear.Location = New System.Drawing.Point(914, 37)
-        Me.cmbPayYear.Name = "cmbPayYear"
-        Me.cmbPayYear.ShadowDecoration.Parent = Me.cmbPayYear
-        Me.cmbPayYear.Size = New System.Drawing.Size(230, 22)
-        Me.cmbPayYear.TabIndex = 6
         '
         'cmbPayMonth
         '
@@ -312,7 +290,6 @@ Partial Class frmDues
         '
         'Label4
         '
-        Me.Label4.Enabled = False
         Me.Label4.Location = New System.Drawing.Point(94, 44)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(78, 23)
@@ -361,6 +338,25 @@ Partial Class frmDues
         Me.btnSearchMem.TabIndex = 1
         Me.btnSearchMem.Text = "Search by name"
         '
+        'cmbPayYear
+        '
+        Me.cmbPayYear.BackColor = System.Drawing.Color.Transparent
+        Me.cmbPayYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbPayYear.FocusedColor = System.Drawing.Color.Empty
+        Me.cmbPayYear.FocusedState.Parent = Me.cmbPayYear
+        Me.cmbPayYear.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cmbPayYear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cmbPayYear.FormattingEnabled = True
+        Me.cmbPayYear.HoverState.Parent = Me.cmbPayYear
+        Me.cmbPayYear.ItemHeight = 30
+        Me.cmbPayYear.Items.AddRange(New Object() {"2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050"})
+        Me.cmbPayYear.ItemsAppearance.Parent = Me.cmbPayYear
+        Me.cmbPayYear.Location = New System.Drawing.Point(914, 31)
+        Me.cmbPayYear.Name = "cmbPayYear"
+        Me.cmbPayYear.ShadowDecoration.Parent = Me.cmbPayYear
+        Me.cmbPayYear.Size = New System.Drawing.Size(230, 36)
+        Me.cmbPayYear.TabIndex = 9
+        '
         'frmDues
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -400,9 +396,9 @@ Partial Class frmDues
     Friend WithEvents txtPayAmount As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtRecepNo As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents cmbPayYear As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents dtpPayDate As Guna.UI2.WinForms.Guna2DateTimePicker
     Friend WithEvents btnPayDues As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnCancelPay As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnSearchMem As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents cmbPayYear As Guna.UI2.WinForms.Guna2ComboBox
 End Class

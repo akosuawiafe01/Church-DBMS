@@ -13,23 +13,29 @@ Public Class frmAttendance
     'Variable for storing member details collected
     Dim attendanceRow As MinChurchDbDataSet.AttendanceRow
 
+    'To clear all text fields
+    Public Sub clearTextFields()
+        txtMemID.Clear()
+        txtMemName.Clear()
+        txtSearchMem.Clear()
+        txtTemperature.Clear()
+    End Sub
+
 
     Private Sub frmAttendance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Enables Arrival Time Timer
+        ArrivalTimer.Enabled = True
+        dtpMeetDate.Value = Date.Now.ToShortDateString
 
-        'TODO: This line of code loads data into the 'MinChurchDbDataSet.Meeting' table. You can move, or remove it, as needed.
-        Me.MeetingTableAdapter.Fill(Me.MinChurchDbDataSet.Meeting)
-
-        MessageBox.Show(rbSign.Text)
 
         'Handles auto complete for search box
         Try
-            dataT = New DataTable
             'OPENING THE CONNECTION
             sqlConn.Open()
             'HOLDS THE DATA TO BE EXECUTED
             With sqlCMD
                 .Connection = sqlConn
-                .CommandText = "SELECT firstName + otherName + lastName as Search FROM Member"
+                .CommandText = "SELECT firstName + otherName + lastName as Search FROM Member where firstName like('" & txtSearchMem.Text & "%') or lastName like('" & txtSearchMem.Text & "%') or otherName like('" & txtSearchMem.Text & "%')"
             End With
             'FILLING THE DATA IN THE DATATABLE
             sqlDA.SelectCommand = sqlCMD
@@ -44,7 +50,7 @@ Public Class frmAttendance
                 txtSearchMem.AutoCompleteCustomSource.Add(r.Item(0).ToString)
             Next
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("No data found on person!")
             sqlConn.Close()
             sqlDA.Dispose()
         End Try
@@ -57,7 +63,7 @@ Public Class frmAttendance
         'Handles automatic input of details
         Try
             sqlCMD.Connection = sqlConn
-            sqlCMD.CommandText = "SELECT memberID, Names FROM DuesInfo WHERE Names='" & txtSearchMem.Text & "'"
+            sqlCMD.CommandText = "SELECT memberID, fullName FROM Details WHERE fullName='" & txtSearchMem.Text & "'"
             sqlCMD.CommandType = CommandType.Text
 
 
@@ -66,7 +72,7 @@ Public Class frmAttendance
                 sdr.Read()
 
                 txtMemID.Text = sdr("memberID").ToString()
-                txtMemName.Text = sdr("Names").ToString()
+                txtMemName.Text = sdr("fullName").ToString()
 
             End Using
             sqlConn.Close()
@@ -84,26 +90,28 @@ Public Class frmAttendance
         attendanceRow.memberID = txtMemID.Text
         attendanceRow.temperature = txtTemperature.Text
         attendanceRow.signaturee = rbSign.Text
-        attendanceRow.arrivalTime = dtpArrivalTime.Value.ToShortTimeString
-        attendanceRow.eventID = cmbMeetTitle.SelectedValue
+        attendanceRow.arrivalTime = lbArrivalTime.Text
+        attendanceRow.datee = dtpMeetDate.Value.Date
 
         Try
             'Saving the details into the database
             attendanceDataset.Attendance.AddAttendanceRow(attendanceRow)
             attendanceTableAdapter.Update(attendanceDataset.Attendance)
 
-            Dim markOption = MessageBox.Show("Attendance recorded successfully! Do you want to mark another person? ", "Attendance Recorded!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+            Dim markOption = MessageBox.Show("Attendance recorded successfully! Do you want to mark another? ", "Check in Successful!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
             If markOption = DialogResult.Yes Then
                 Me.Show()
-                'clearTextFields()
+                clearTextFields()
             Else
                 frmMainMenu.Show()
-                'clearTextFields()
+                clearTextFields()
                 Me.Close()
             End If
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show("There was an error in taking the attendance. Please check for the following: 1. Duplicate checkin 2. Meeing Date not scheduled", "Saving Error")
+
         End Try
+
 
     End Sub
 
@@ -112,10 +120,16 @@ Public Class frmAttendance
 
         If cancelOption = DialogResult.Yes Then
             frmMainMenu.Show()
-            'clearTextFields()
+            clearTextFields()
             Me.Close()
         Else
             Me.Show()
         End If
     End Sub
+
+    Private Sub sysTime_Tick(sender As Object, e As EventArgs) Handles ArrivalTimer.Tick
+        'Sets Arrival Time to current system time
+        lbArrivalTime.Text = Date.Now.ToShortTimeString
+    End Sub
+
 End Class

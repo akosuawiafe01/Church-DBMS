@@ -65,6 +65,7 @@ Public Class frmDues
             If payOption = DialogResult.Yes Then
                 Me.Show()
                 clearTextFields()
+                txtRecepNo.Text = randomNumber(receiptNum)
             Else
                 frmMainMenu.Show()
                 clearTextFields()
@@ -73,22 +74,23 @@ Public Class frmDues
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
-
         End Try
 
 
     End Sub
 
     Private Sub frmDues_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        dtpPayDate.Value = Date.Now.ToShortDateString
+
         'Handles auto complete for search box
         Try
-            dataT = New DataTable
             'OPENING THE CONNECTION
             sqlConn.Open()
             'HOLDS THE DATA TO BE EXECUTED
             With sqlCMD
                 .Connection = sqlConn
-                .CommandText = "SELECT firstName + otherName + lastName as Search FROM Member"
+                .CommandText = "SELECT firstName + otherName + lastName as Search FROM Member where firstName like('" & txtSearchMemNameDues.Text & "%') or lastName like('" & txtSearchMemNameDues.Text & "%') or otherName like('" & txtSearchMemNameDues.Text & "%')"
             End With
             'FILLING THE DATA IN THE DATATABLE
             sqlDA.SelectCommand = sqlCMD
@@ -117,7 +119,7 @@ Public Class frmDues
         'Handles automatic input of details
         Try
             sqlCMD.Connection = sqlConn
-            sqlCMD.CommandText = "SELECT memberID, Names FROM DuesInfo WHERE Names='" & txtSearchMemNameDues.Text & "'"
+            sqlCMD.CommandText = "SELECT memberID, fullName FROM Details WHERE fullName='" & txtSearchMemNameDues.Text & "'"
             sqlCMD.CommandType = CommandType.Text
 
 
@@ -126,7 +128,7 @@ Public Class frmDues
                 sdr.Read()
 
                 txtMemID.Text = sdr("memberID").ToString()
-                txtMemName.Text = sdr("Names").ToString()
+                txtMemName.Text = sdr("fullName").ToString()
 
             End Using
             sqlConn.Close()

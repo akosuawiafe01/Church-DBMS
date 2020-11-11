@@ -18,3 +18,14 @@ D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.xml
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini Church App.pdb
 D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.frmMemberRegistration.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Microsoft.ReportViewer.Common.dll
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\Projects and Stuff\Mini Church App\Mini Church App\bin\Debug\Microsoft.ReportViewer.WinForms.xml
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.rptDuesRecords.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.rptDueYAF.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.rptMeetingHeadCount.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.rptScheduledMeetings.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.rptTotalNumberofMembers.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\Mini_Church_App.testrpt2.resources
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\RdlCompile.cache
+D:\Projects and Stuff\Mini Church App\Mini Church App\obj\Debug\RdlCompile.compiled
