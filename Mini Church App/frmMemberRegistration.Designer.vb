@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMemberRegistration
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,15 +20,18 @@ Partial Class frmMemberRegistration
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GunaLabel1 = New Guna.UI.WinForms.GunaLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cmbMarStats = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmbTitle = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.cmbGender = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.GunaLabel3 = New Guna.UI.WinForms.GunaLabel()
-        Me.cmbTitle = New System.Windows.Forms.ComboBox()
         Me.dtpDOB = New Guna.UI2.WinForms.Guna2DateTimePicker()
-        Me.cmbMarStats = New System.Windows.Forms.ComboBox()
-        Me.cmbGender = New System.Windows.Forms.ComboBox()
         Me.txtOccupation = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtAltCon = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtContact = New Guna.UI2.WinForms.Guna2TextBox()
@@ -46,13 +49,13 @@ Partial Class frmMemberRegistration
         Me.pbProfilePic = New System.Windows.Forms.PictureBox()
         Me.btnCanMemReg = New Guna.UI2.WinForms.Guna2Button()
         Me.btnRegMeme = New Guna.UI2.WinForms.Guna2Button()
-        Me.GunaLabel2 = New Guna.UI.WinForms.GunaLabel()
         Me.txtMemID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.labMemID = New Guna.UI.WinForms.GunaLabel()
         Me.txtSearchReg = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnSearchReg = New Guna.UI2.WinForms.Guna2Button()
         Me.btnUpdateMemDeats = New Guna.UI2.WinForms.Guna2Button()
         Me.btnClearSearch = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnBrowseImage = New Guna.UI2.WinForms.Guna2Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.pbProfilePic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,11 +73,14 @@ Partial Class frmMemberRegistration
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.GunaLabel3)
-        Me.GroupBox1.Controls.Add(Me.cmbTitle)
-        Me.GroupBox1.Controls.Add(Me.dtpDOB)
+        Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.cmbMarStats)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.cmbTitle)
+        Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.cmbGender)
+        Me.GroupBox1.Controls.Add(Me.GunaLabel3)
+        Me.GroupBox1.Controls.Add(Me.dtpDOB)
         Me.GroupBox1.Controls.Add(Me.txtOccupation)
         Me.GroupBox1.Controls.Add(Me.txtAltCon)
         Me.GroupBox1.Controls.Add(Me.txtContact)
@@ -89,6 +95,93 @@ Partial Class frmMemberRegistration
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Basic Details"
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(394, 237)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(71, 13)
+        Me.Label2.TabIndex = 15
+        Me.Label2.Text = "Marital Status"
+        '
+        'cmbMarStats
+        '
+        Me.cmbMarStats.BackColor = System.Drawing.Color.Transparent
+        Me.cmbMarStats.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbMarStats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbMarStats.FocusedColor = System.Drawing.Color.Empty
+        Me.cmbMarStats.FocusedState.Parent = Me.cmbMarStats
+        Me.cmbMarStats.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cmbMarStats.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cmbMarStats.FormattingEnabled = True
+        Me.cmbMarStats.HoverState.Parent = Me.cmbMarStats
+        Me.cmbMarStats.ItemHeight = 30
+        Me.cmbMarStats.Items.AddRange(New Object() {"Single", "Married"})
+        Me.cmbMarStats.ItemsAppearance.Parent = Me.cmbMarStats
+        Me.cmbMarStats.Location = New System.Drawing.Point(461, 228)
+        Me.cmbMarStats.Name = "cmbMarStats"
+        Me.cmbMarStats.ShadowDecoration.Parent = Me.cmbMarStats
+        Me.cmbMarStats.Size = New System.Drawing.Size(162, 36)
+        Me.cmbMarStats.TabIndex = 17
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(30, 48)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(27, 13)
+        Me.Label3.TabIndex = 16
+        Me.Label3.Text = "Title"
+        '
+        'cmbTitle
+        '
+        Me.cmbTitle.BackColor = System.Drawing.Color.Transparent
+        Me.cmbTitle.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbTitle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTitle.FocusedColor = System.Drawing.Color.Empty
+        Me.cmbTitle.FocusedState.Parent = Me.cmbTitle
+        Me.cmbTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cmbTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cmbTitle.FormattingEnabled = True
+        Me.cmbTitle.HoverState.Parent = Me.cmbTitle
+        Me.cmbTitle.ItemHeight = 30
+        Me.cmbTitle.Items.AddRange(New Object() {"Mr", "Miss", "Mrs"})
+        Me.cmbTitle.ItemsAppearance.Parent = Me.cmbTitle
+        Me.cmbTitle.Location = New System.Drawing.Point(97, 42)
+        Me.cmbTitle.Name = "cmbTitle"
+        Me.cmbTitle.ShadowDecoration.Parent = Me.cmbTitle
+        Me.cmbTitle.Size = New System.Drawing.Size(162, 36)
+        Me.cmbTitle.TabIndex = 15
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(394, 48)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(42, 13)
+        Me.Label1.TabIndex = 14
+        Me.Label1.Text = "Gender"
+        '
+        'cmbGender
+        '
+        Me.cmbGender.BackColor = System.Drawing.Color.Transparent
+        Me.cmbGender.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbGender.FocusedColor = System.Drawing.Color.Empty
+        Me.cmbGender.FocusedState.Parent = Me.cmbGender
+        Me.cmbGender.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cmbGender.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cmbGender.FormattingEnabled = True
+        Me.cmbGender.HoverState.Parent = Me.cmbGender
+        Me.cmbGender.ItemHeight = 30
+        Me.cmbGender.Items.AddRange(New Object() {"Male", "Female"})
+        Me.cmbGender.ItemsAppearance.Parent = Me.cmbGender
+        Me.cmbGender.Location = New System.Drawing.Point(461, 42)
+        Me.cmbGender.Name = "cmbGender"
+        Me.cmbGender.ShadowDecoration.Parent = Me.cmbGender
+        Me.cmbGender.Size = New System.Drawing.Size(162, 36)
+        Me.cmbGender.TabIndex = 13
+        '
         'GunaLabel3
         '
         Me.GunaLabel3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -98,16 +191,6 @@ Partial Class frmMemberRegistration
         Me.GunaLabel3.TabIndex = 8
         Me.GunaLabel3.Text = "Date of Birth"
         Me.GunaLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'cmbTitle
-        '
-        Me.cmbTitle.FormattingEnabled = True
-        Me.cmbTitle.Items.AddRange(New Object() {"Mr.", "Miss", "Mrs."})
-        Me.cmbTitle.Location = New System.Drawing.Point(33, 40)
-        Me.cmbTitle.Name = "cmbTitle"
-        Me.cmbTitle.Size = New System.Drawing.Size(226, 21)
-        Me.cmbTitle.TabIndex = 9
-        Me.cmbTitle.Text = "Title"
         '
         'dtpDOB
         '
@@ -123,26 +206,6 @@ Partial Class frmMemberRegistration
         Me.dtpDOB.Size = New System.Drawing.Size(226, 27)
         Me.dtpDOB.TabIndex = 8
         Me.dtpDOB.Value = New Date(2020, 11, 3, 17, 32, 13, 984)
-        '
-        'cmbMarStats
-        '
-        Me.cmbMarStats.FormattingEnabled = True
-        Me.cmbMarStats.Items.AddRange(New Object() {"Single", "Married"})
-        Me.cmbMarStats.Location = New System.Drawing.Point(397, 237)
-        Me.cmbMarStats.Name = "cmbMarStats"
-        Me.cmbMarStats.Size = New System.Drawing.Size(226, 21)
-        Me.cmbMarStats.TabIndex = 9
-        Me.cmbMarStats.Text = "Marital Status"
-        '
-        'cmbGender
-        '
-        Me.cmbGender.FormattingEnabled = True
-        Me.cmbGender.Items.AddRange(New Object() {"Male", "Female"})
-        Me.cmbGender.Location = New System.Drawing.Point(397, 40)
-        Me.cmbGender.Name = "cmbGender"
-        Me.cmbGender.Size = New System.Drawing.Size(226, 21)
-        Me.cmbGender.TabIndex = 8
-        Me.cmbGender.Text = "Gender"
         '
         'txtOccupation
         '
@@ -430,9 +493,10 @@ Partial Class frmMemberRegistration
         'pbProfilePic
         '
         Me.pbProfilePic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pbProfilePic.Location = New System.Drawing.Point(995, 112)
+        Me.pbProfilePic.Location = New System.Drawing.Point(995, 79)
         Me.pbProfilePic.Name = "pbProfilePic"
-        Me.pbProfilePic.Size = New System.Drawing.Size(252, 130)
+        Me.pbProfilePic.Size = New System.Drawing.Size(252, 163)
+        Me.pbProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbProfilePic.TabIndex = 3
         Me.pbProfilePic.TabStop = False
         '
@@ -463,16 +527,6 @@ Partial Class frmMemberRegistration
         Me.btnRegMeme.Size = New System.Drawing.Size(76, 24)
         Me.btnRegMeme.TabIndex = 5
         Me.btnRegMeme.Text = "Register"
-        '
-        'GunaLabel2
-        '
-        Me.GunaLabel2.AutoSize = True
-        Me.GunaLabel2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.GunaLabel2.Location = New System.Drawing.Point(1203, 254)
-        Me.GunaLabel2.Name = "GunaLabel2"
-        Me.GunaLabel2.Size = New System.Drawing.Size(44, 15)
-        Me.GunaLabel2.TabIndex = 6
-        Me.GunaLabel2.Text = "Picture"
         '
         'txtMemID
         '
@@ -573,6 +627,20 @@ Partial Class frmMemberRegistration
         Me.btnClearSearch.TabIndex = 11
         Me.btnClearSearch.Text = "Clear search"
         '
+        'btnBrowseImage
+        '
+        Me.btnBrowseImage.CheckedState.Parent = Me.btnBrowseImage
+        Me.btnBrowseImage.CustomImages.Parent = Me.btnBrowseImage
+        Me.btnBrowseImage.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnBrowseImage.ForeColor = System.Drawing.Color.White
+        Me.btnBrowseImage.HoverState.Parent = Me.btnBrowseImage
+        Me.btnBrowseImage.Location = New System.Drawing.Point(1121, 248)
+        Me.btnBrowseImage.Name = "btnBrowseImage"
+        Me.btnBrowseImage.ShadowDecoration.Parent = Me.btnBrowseImage
+        Me.btnBrowseImage.Size = New System.Drawing.Size(126, 28)
+        Me.btnBrowseImage.TabIndex = 12
+        Me.btnBrowseImage.Text = "Browse for Image"
+        '
         'frmMemberRegistration
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -580,13 +648,13 @@ Partial Class frmMemberRegistration
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1295, 611)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnBrowseImage)
         Me.Controls.Add(Me.btnClearSearch)
         Me.Controls.Add(Me.btnUpdateMemDeats)
         Me.Controls.Add(Me.btnSearchReg)
         Me.Controls.Add(Me.txtSearchReg)
         Me.Controls.Add(Me.labMemID)
         Me.Controls.Add(Me.txtMemID)
-        Me.Controls.Add(Me.GunaLabel2)
         Me.Controls.Add(Me.btnRegMeme)
         Me.Controls.Add(Me.btnCanMemReg)
         Me.Controls.Add(Me.pbProfilePic)
@@ -598,10 +666,10 @@ Partial Class frmMemberRegistration
         Me.Text = "MemberRegistration"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         CType(Me.pbProfilePic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -611,7 +679,6 @@ Partial Class frmMemberRegistration
     Friend WithEvents pbProfilePic As PictureBox
     Friend WithEvents btnCanMemReg As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnRegMeme As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents GunaLabel2 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents txtOccupation As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtAltCon As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtContact As Guna.UI2.WinForms.Guna2TextBox
@@ -622,9 +689,6 @@ Partial Class frmMemberRegistration
     Friend WithEvents txtMemID As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents labMemID As Guna.UI.WinForms.GunaLabel
     Friend WithEvents dtpDOB As Guna.UI2.WinForms.Guna2DateTimePicker
-    Friend WithEvents cmbGender As ComboBox
-    Friend WithEvents cmbMarStats As ComboBox
-    Friend WithEvents cmbTitle As ComboBox
     Friend WithEvents GunaLabel3 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents txtEmergencyConRel As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtEmerCon As Guna.UI2.WinForms.Guna2TextBox
@@ -636,4 +700,11 @@ Partial Class frmMemberRegistration
     Friend WithEvents btnSearchReg As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnUpdateMemDeats As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnClearSearch As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnBrowseImage As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents cmbGender As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents cmbTitle As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents cmbMarStats As Guna.UI2.WinForms.Guna2ComboBox
 End Class

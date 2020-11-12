@@ -63,8 +63,13 @@
         Me.Close()
     End Sub
 
-    Private Sub AllRecordsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllRecordsToolStripMenuItem.Click
+    Private Sub AllRecordsToolStripMenuItem_Click(sender As Object, e As EventArgs)
         rptDuesRecords.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click
+        testrpt2.Show()
         Me.Close()
     End Sub
 End Class

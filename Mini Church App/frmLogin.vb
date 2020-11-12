@@ -16,36 +16,36 @@ Public Class frmLogin
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
 
         'Handles user logins
-        Try
-            sqlCMD.Connection = sqlConn
-            sqlCMD.CommandText = "SELECT username, password FROM System_Access WHERE username ='" & txtUsername.Text & "' AND password ='" & txtPassword.Text & "'"
-            sqlCMD.CommandType = CommandType.Text
+        ' Try
+        ' sqlCMD.Connection = sqlConn
+        'sqlCMD.CommandText = "SELECT username, password FROM System_Access WHERE username ='" & txtUsername.Text & "' AND password ='" & txtPassword.Text & "'"
+        ' sqlCMD.CommandType = CommandType.Text
 
 
-            sqlConn.Open()
-            Using sdr As SqlDataReader = sqlCMD.ExecuteReader()
-                Dim dataRead As String = sdr.Read()
+        'sqlConn.Open()
+        'Using sdr As SqlDataReader = sqlCMD.ExecuteReader()
+        'Dim dataRead As String = sdr.Read()
 
-                If (dataRead = True) Then
-                    Me.Hide()
-                    frmMainMenu.Show()
-                    clearTextFields()
-                    lbLoginUnsucc.Visible = False
+        'If (dataRead = True) Then
+        Me.Hide()
+            frmMainMenu.Show()
+            '        clearTextFields()
+        'lbLoginUnsucc.Visible = False
 
-                Else
-                    lbLoginUnsucc.Visible = True
-                    lbLoginUnsucc.Text = "Login Unsuccessful 😕, Try again!"
-                    Me.Show()
+        'Else
+        'lbLoginUnsucc.Visible = True
+        'lbLoginUnsucc.Text = "Login Unsuccessful 😕, Try again!"
+        'Me.Show()
 
-                End If
+        'End If
 
-            End Using
-            sqlConn.Close()
+        'End Using
+        'sqlConn.Close()
 
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-            sqlConn.Close()
-        End Try
+        'Catch ex As Exception
+        '   MessageBox.Show(ex.Message)
+        '  sqlConn.Close()
+        'End Try
     End Sub
 
     Private Sub Guna2CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles cbViewPass.CheckedChanged
@@ -58,4 +58,7 @@ Public Class frmLogin
         End If
     End Sub
 
+    Private Sub GunaLabel1_Click(sender As Object, e As EventArgs) Handles GunaLabel1.Click
+
+    End Sub
 End Class

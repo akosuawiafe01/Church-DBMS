@@ -26,30 +26,28 @@ Partial Class frmMainMenu
         Me.DuesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ScheduleMeetingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DuesRecordsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PerMonthToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PerYearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PerUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AllRecordsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MeetingCountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DueYAFMembersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ScheduleMeetingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tbAbout = New System.Windows.Forms.TabControl()
+        Me.ReportsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.lbQuotes = New System.Windows.Forms.Label()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
+        Me.tbAbout = New System.Windows.Forms.TabControl()
         Me.MenuStrip1.SuspendLayout()
-        Me.tbAbout.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        Me.tbAbout.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuesToolStripMenuItem, Me.MarkAttendanceToolStripMenuItem, Me.RegisterToolStripMenuItem, Me.ReportsToolStripMenuItem, Me.ScheduleMeetingToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuesToolStripMenuItem, Me.MarkAttendanceToolStripMenuItem, Me.RegisterToolStripMenuItem, Me.ScheduleMeetingToolStripMenuItem, Me.ReportsToolStripMenuItem, Me.ReportsToolStripMenuItem1})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1315, 24)
@@ -74,43 +72,24 @@ Partial Class frmMainMenu
         Me.RegisterToolStripMenuItem.Size = New System.Drawing.Size(109, 20)
         Me.RegisterToolStripMenuItem.Text = "Register Member"
         '
+        'ScheduleMeetingToolStripMenuItem
+        '
+        Me.ScheduleMeetingToolStripMenuItem.Name = "ScheduleMeetingToolStripMenuItem"
+        Me.ScheduleMeetingToolStripMenuItem.Size = New System.Drawing.Size(123, 20)
+        Me.ScheduleMeetingToolStripMenuItem.Text = "Schedule a Meeting"
+        '
         'ReportsToolStripMenuItem
         '
         Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuesRecordsToolStripMenuItem, Me.MeetingCountToolStripMenuItem, Me.DueYAFMembersToolStripMenuItem, Me.TestToolStripMenuItem})
         Me.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem"
-        Me.ReportsToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
-        Me.ReportsToolStripMenuItem.Text = "Reports"
+        Me.ReportsToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
+        Me.ReportsToolStripMenuItem.Text = "Predefined Queries"
         '
         'DuesRecordsToolStripMenuItem
         '
-        Me.DuesRecordsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PerMonthToolStripMenuItem, Me.PerYearToolStripMenuItem, Me.PerUserToolStripMenuItem, Me.AllRecordsToolStripMenuItem})
         Me.DuesRecordsToolStripMenuItem.Name = "DuesRecordsToolStripMenuItem"
         Me.DuesRecordsToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.DuesRecordsToolStripMenuItem.Text = "Dues Records"
-        '
-        'PerMonthToolStripMenuItem
-        '
-        Me.PerMonthToolStripMenuItem.Name = "PerMonthToolStripMenuItem"
-        Me.PerMonthToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.PerMonthToolStripMenuItem.Text = "Per Month"
-        '
-        'PerYearToolStripMenuItem
-        '
-        Me.PerYearToolStripMenuItem.Name = "PerYearToolStripMenuItem"
-        Me.PerYearToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.PerYearToolStripMenuItem.Text = "Per Year"
-        '
-        'PerUserToolStripMenuItem
-        '
-        Me.PerUserToolStripMenuItem.Name = "PerUserToolStripMenuItem"
-        Me.PerUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.PerUserToolStripMenuItem.Text = "Per User"
-        '
-        'AllRecordsToolStripMenuItem
-        '
-        Me.AllRecordsToolStripMenuItem.Name = "AllRecordsToolStripMenuItem"
-        Me.AllRecordsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.AllRecordsToolStripMenuItem.Text = "All Records"
         '
         'MeetingCountToolStripMenuItem
         '
@@ -130,22 +109,46 @@ Partial Class frmMainMenu
         Me.TestToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.TestToolStripMenuItem.Text = "Test"
         '
-        'ScheduleMeetingToolStripMenuItem
+        'ReportsToolStripMenuItem1
         '
-        Me.ScheduleMeetingToolStripMenuItem.Name = "ScheduleMeetingToolStripMenuItem"
-        Me.ScheduleMeetingToolStripMenuItem.Size = New System.Drawing.Size(123, 20)
-        Me.ScheduleMeetingToolStripMenuItem.Text = "Schedule a Meeting"
+        Me.ReportsToolStripMenuItem1.Name = "ReportsToolStripMenuItem1"
+        Me.ReportsToolStripMenuItem1.Size = New System.Drawing.Size(59, 20)
+        Me.ReportsToolStripMenuItem1.Text = "Reports"
         '
-        'tbAbout
+        'btnLogout
         '
-        Me.tbAbout.Controls.Add(Me.TabPage3)
-        Me.tbAbout.Controls.Add(Me.TabPage1)
-        Me.tbAbout.Controls.Add(Me.TabPage2)
-        Me.tbAbout.Location = New System.Drawing.Point(0, 27)
-        Me.tbAbout.Name = "tbAbout"
-        Me.tbAbout.SelectedIndex = 0
-        Me.tbAbout.Size = New System.Drawing.Size(1333, 518)
-        Me.tbAbout.TabIndex = 2
+        Me.btnLogout.CheckedState.Parent = Me.btnLogout
+        Me.btnLogout.CustomImages.Parent = Me.btnLogout
+        Me.btnLogout.FillColor = System.Drawing.Color.White
+        Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnLogout.ForeColor = System.Drawing.Color.Black
+        Me.btnLogout.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnLogout.HoverState.Parent = Me.btnLogout
+        Me.btnLogout.Location = New System.Drawing.Point(1201, 0)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.ShadowDecoration.Parent = Me.btnLogout
+        Me.btnLogout.Size = New System.Drawing.Size(102, 22)
+        Me.btnLogout.TabIndex = 4
+        Me.btnLogout.Text = "Logout"
+        '
+        'TabPage1
+        '
+        Me.TabPage1.BackColor = System.Drawing.Color.White
+        Me.TabPage1.Controls.Add(Me.Label1)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(1325, 492)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "About Us"
+        '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(622, 17)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(677, 460)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Label1"
         '
         'TabPage3
         '
@@ -170,41 +173,15 @@ Partial Class frmMainMenu
         Me.lbQuotes.Text = "Today'sQuotes"
         Me.lbQuotes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TabPage1
+        'tbAbout
         '
-        Me.TabPage1.BackColor = System.Drawing.Color.Silver
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1325, 492)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "About Us"
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1325, 492)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Announcements"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'btnLogout
-        '
-        Me.btnLogout.CheckedState.Parent = Me.btnLogout
-        Me.btnLogout.CustomImages.Parent = Me.btnLogout
-        Me.btnLogout.FillColor = System.Drawing.Color.White
-        Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnLogout.ForeColor = System.Drawing.Color.Black
-        Me.btnLogout.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnLogout.HoverState.Parent = Me.btnLogout
-        Me.btnLogout.Location = New System.Drawing.Point(1201, 0)
-        Me.btnLogout.Name = "btnLogout"
-        Me.btnLogout.ShadowDecoration.Parent = Me.btnLogout
-        Me.btnLogout.Size = New System.Drawing.Size(102, 22)
-        Me.btnLogout.TabIndex = 4
-        Me.btnLogout.Text = "Logout"
+        Me.tbAbout.Controls.Add(Me.TabPage3)
+        Me.tbAbout.Controls.Add(Me.TabPage1)
+        Me.tbAbout.Location = New System.Drawing.Point(0, 27)
+        Me.tbAbout.Name = "tbAbout"
+        Me.tbAbout.SelectedIndex = 0
+        Me.tbAbout.Size = New System.Drawing.Size(1333, 518)
+        Me.tbAbout.TabIndex = 2
         '
         'frmMainMenu
         '
@@ -223,8 +200,9 @@ Partial Class frmMainMenu
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.tbAbout.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
+        Me.tbAbout.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -236,18 +214,15 @@ Partial Class frmMainMenu
     Friend WithEvents RegisterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ScheduleMeetingToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents tbAbout As TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents TabPage3 As TabPage
     Friend WithEvents btnLogout As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents lbQuotes As Label
     Friend WithEvents DuesRecordsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MeetingCountToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DueYAFMembersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TestToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PerMonthToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PerYearToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PerUserToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AllRecordsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents lbQuotes As Label
+    Friend WithEvents tbAbout As TabControl
+    Friend WithEvents Label1 As Label
+    Friend WithEvents ReportsToolStripMenuItem1 As ToolStripMenuItem
 End Class

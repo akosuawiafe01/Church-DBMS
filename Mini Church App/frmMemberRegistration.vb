@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-
+Imports System.IO
 Public Class frmMemberRegistration
     'SQL connection stuff
     Public connStr As String = "Data Source=.;Initial Catalog=MinChurchDb;Integrated Security=True"
@@ -7,6 +7,7 @@ Public Class frmMemberRegistration
     Public sqlCMD As New SqlCommand
     Public sqlDA As New SqlDataAdapter
     Public dataT As New DataTable
+    Public sdr As SqlDataReader
 
     'Database entry stuff
     Dim memberTableAdapter As MinChurchDbDataSetTableAdapters.MemberTableAdapter = New MinChurchDbDataSetTableAdapters.MemberTableAdapter
@@ -50,32 +51,37 @@ Public Class frmMemberRegistration
     End Sub
 
     Private Sub btnRegMeme_Click(sender As Object, e As EventArgs) Handles btnRegMeme.Click
-        memberRow = memberDataset.Member.NewRow
-
-        'Fill rows in the member table of the database
-        memberRow.memberID = txtMemID.Text
-        memberRow.firstName = txtFN.Text
-        memberRow.otherName = txtON.Text
-        memberRow.lastName = txtLN.Text
-        memberRow.alternateContact = txtAltCon.Text
-        memberRow.contact = txtContact.Text
-        memberRow.emergencyContact = txtEmerCon.Text
-        memberRow.emergencyContactRel = txtEmergencyConRel.Text
-        memberRow.digitalAddress = txtDigAddr.Text
-        memberRow.email = txtEmail.Text
-        memberRow.occupation = txtOccupation.Text
-        memberRow.residenceLocation = txtResLoc.Text
-        memberRow.gender = cmbGender.SelectedItem
-        memberRow.title = cmbTitle.SelectedItem
-        memberRow.maritalStatus = cmbMarStats.SelectedItem
-        memberRow.dob = dtpDOB.Value.Date
-        memberRow.registrationDate = dtpRegDate.Value.Date
-
+        Dim ms As New MemoryStream()
         Try
-            'Saving the details into the database
-            memberDataset.Member.AddMemberRow(memberRow)
-            memberTableAdapter.Update(memberDataset.Member)
+            sqlConn.Open()
+            sqlCMD = New SqlCommand("Insert into Member values(@memberID, @title, @firstName, @lastName, @otherName, @email, @dob, @residenceLocation, @alternateContact, @gender, @occupation, @maritalStatus, @registrationDate, @emergencyContact, @emergencyContactRel, @digitalAddress, @contact, @picture)", sqlConn)
 
+            'Saving the details into the database
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("memberID", txtMemID.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("title", cmbTitle.SelectedItem))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("firstName", txtFN.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("lastName", txtLN.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("otherName", txtON.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("email", txtEmail.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("dob", dtpDOB.Value.Date))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("residenceLocation", txtAltCon.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("alternateContact", txtAltCon.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("gender", cmbGender.SelectedItem.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("occupation", txtOccupation.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("maritalStatus", cmbMarStats.SelectedItem))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("registrationDate", dtpRegDate.Value.Date))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("emergencyContact", txtEmerCon.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("emergencyContactRel", txtEmergencyConRel.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("digitalAddress", txtDigAddr.Text.Trim()))
+            sqlCMD.Parameters.Add(New SqlClient.SqlParameter("contact", txtContact.Text.Trim()))
+
+            'Deals with saving image into database
+            pbProfilePic.BackgroundImage.Save(ms, pbProfilePic.BackgroundImage.RawFormat)
+            Dim data As Byte() = ms.GetBuffer()
+            Dim profilePicture As New SqlParameter("@picture", SqlDbType.Image)
+            profilePicture.Value = data
+            sqlCMD.Parameters.Add(profilePicture)
+            sqlCMD.ExecuteNonQuery()
 
             Dim payOption = MessageBox.Show("" & txtFN.Text & " has been registered successfully. Do you want to add another record? ", "Registration Successful!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
             If payOption = DialogResult.Yes Then
@@ -90,7 +96,9 @@ Public Class frmMemberRegistration
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
-
+        Finally
+            sqlConn.Close()
+            Me.Cursor = Cursors.Default
         End Try
     End Sub
 
@@ -120,12 +128,11 @@ Public Class frmMemberRegistration
             Next
         Catch ex As Exception
             MsgBox(ex.Message)
+        Finally
+            'CLOSING THE CONNECTION
             sqlConn.Close()
             sqlDA.Dispose()
         End Try
-        'CLOSING THE CONNECTION
-        sqlConn.Close()
-        sqlDA.Dispose()
 
     End Sub
 
@@ -137,9 +144,9 @@ Public Class frmMemberRegistration
             sqlCMD.CommandText = "SELECT * FROM Details WHERE fullName='" & txtSearchReg.Text & "'"
             sqlCMD.CommandType = CommandType.Text
 
-
             sqlConn.Open()
-            Using sdr As SqlDataReader = sqlCMD.ExecuteReader()
+            sdr = sqlCMD.ExecuteReader()
+            Using sdr
                 sdr.Read()
 
                 txtMemID.Text = sdr("memberID").ToString()
@@ -159,16 +166,63 @@ Public Class frmMemberRegistration
                 cmbMarStats.SelectedItem = sdr("maritalStatus").ToString()
                 dtpDOB.Value = sdr("dob").ToString()
                 dtpRegDate.Value = sdr("registrationDate").ToString()
+
             End Using
-            sqlConn.Close()
+
+            sdr = sqlCMD.ExecuteReader()
+            If sdr.Read = True Then
+
+                Dim imageData As Byte() = sdr(17)
+                If Not imageData Is Nothing Then
+
+                    Using ms As New MemoryStream(imageData, 0, imageData.Length)
+
+                        ms.Write(imageData, 0, imageData.Length)
+
+                        pbProfilePic.Image = Image.FromStream(ms, True)
+
+                        Me.Cursor = Cursors.Default
+                    End Using
+                End If
+                Me.Cursor = Cursors.Default
+            End If
+
         Catch ex As Exception
             MessageBox.Show(ex.Message)
+        Finally
+            Me.Cursor = Cursors.Default
             sqlConn.Close()
         End Try
+
+
+
     End Sub
 
     Private Sub btnClearSearch_Click(sender As Object, e As EventArgs) Handles btnClearSearch.Click
         txtSearchReg.Clear()
+        pbProfilePic.Image = Nothing
         clearTextFields()
+        txtMemID.Text = "GC-YPG/" + randomNumber(memberID)
     End Sub
+
+    Private Sub btnBrowseImage_Click(sender As Object, e As EventArgs) Handles btnBrowseImage.Click
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            Dim open As OpenFileDialog
+            open = New OpenFileDialog
+            open.FileName = ""
+            open.Filter = "Image Formats(*.jpg;*.jpeg;*.bmp;*.gif;*.png;*.tif)|*.jpg;*.jpeg;*.bmp;*.gif;*.png;*.tif|JPEG Format(*.jpg;*.jpeg)|*.jpg;*.jpeg|BITMAP Format(*.bmp)|*.bmp|GIF Format(*.gif)|*.gif|PNG Format(*.png)|*.png"
+            If open.ShowDialog = Windows.Forms.DialogResult.OK Then
+                pbProfilePic.BackgroundImageLayout = ImageLayout.Stretch
+                pbProfilePic.BackgroundImage = Image.FromFile(open.FileName.ToUpper)
+
+            End If
+            Me.Cursor = Cursors.Default
+        Catch ex As Exception
+            Me.Cursor = Cursors.Default
+            MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
+    End Sub
+
+
 End Class
